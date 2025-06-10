@@ -1,1 +1,5 @@
 /_build/
+
+# Python
+*.pyc
+__pycache__/

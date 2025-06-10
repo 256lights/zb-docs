@@ -29,19 +29,7 @@ The standard library currently supports:
 
 ## Installation
 
-To install zb:
-
-1. Go to the [latest zb release](https://github.com/256lights/zb/releases/latest)
-   in your web browser.
-2. Download the binary archive asset for your platform.
-3. Extract the binary archive.
-4. On Unix-like systems, run the `install` script.
-   There is no installer for Windows yet.
-   ([#82](https://github.com/256lights/zb/issues/82) tracks adding an installer.)
-5. Once the installer finishes, you can delete the binary archive and the extracted directory.
-
-On `aarch64-apple-macos`, the zb standard library requires additional setup.
-See the [standard library README](https://github.com/256lights/zb-stdlib/blob/main/README.md) for details.
+If you haven't already, follow the [installation instructions](install.md).
 
 ## Tutorial
 
@@ -261,7 +249,7 @@ the path to where the derivation's output must be placed.
 ## Wrapping Up
 
 In this guide, we wrote a simple build configuration for a single-file C program.
-The [language reference](lua.md) describes the flavor of Lua that zb understands,
+The [language reference](lua/index.md) describes the flavor of Lua that zb understands,
 as well as its built-in functions.
 The [standard library repository](https://github.com/256lights/zb-stdlib)
 includes other packages and utility functions that can be useful.

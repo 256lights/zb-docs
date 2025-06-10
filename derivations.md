@@ -1,13 +1,13 @@
 # Derivation Specification
 
-A zb build is composed of one or more *derivations* which run *builder programs*.
+A zb build is composed of one or more {term}`derivations <derivation>` which run {term}`builder programs <builder program>`.
 A derivation's canonical form is its `.drv` file,
 which shares the same syntax as [Nix's derivation file format][].
 This document describes the `.drv` file format
 and the environment in which a derivation's builder program executes.
 
 Users of zb typically will not directly create `.drv` files themselves.
-Instead, they use the [`derivation` Lua function][],
+Instead, they use the {lua:func}`derivation` Lua function,
 which produces a `.drv` file under the hood.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -19,7 +19,6 @@ Syntax is defined in Augmented Backus-Naur Form as described in [RFC 5234][] and
 [RFC 5234]: https://datatracker.ietf.org/doc/html/rfc5234
 [RFC 7405]: https://datatracker.ietf.org/doc/html/rfc7405
 [Nix's derivation file format]: https://nix.dev/manual/nix/2.24/protocols/derivation-aterm
-[`derivation` Lua function]: lua.md
 
 ## `.drv` format
 
@@ -104,17 +103,17 @@ In summary, a `.drv` file consists of:
 - Zero or more *builder arguments*.
 - Zero or more *environment variables*.
   These are string key/value pairs.
-  See the "Environment Variables" section below for the semantics.
+  See the ["Environment Variables" section](#environment-variables) below for the semantics.
 
 [ATerm]: https://doi.org/10.1002/(SICI)1097-024X(200003)30:3<259::AID-SPE298>3.0.CO;2-Y
-[*system* triple]: ../internal/system/README.md
+[*system* triple]: https://github.com/256lights/zb/blob/main/internal/system/README.md
 
 ## Placeholders
 
 Environment variable values, the builder string, and builder arguments
 within the `.drv` file **MAY** contain placeholders
 for their own outputs or their input derivations' outputs.
-(This mechanism is used in the [`derivation` Lua function][]
+(This mechanism is used in the {lua:func}`derivation` Lua function
 to provide the `out` environment variable, for example.)
 zb **SHALL** treat each placeholder string present in these fields
 as if it was replaced with the absolute path to the corresponding store object.
@@ -133,6 +132,7 @@ then followed by a hyphen (`-`) and followed by the output name.
 
 [Nix-Base-32-encoded]: https://edolstra.github.io/pubs/phd-thesis.pdf#page=97
 
+(environment-variables)=
 ## Environment Variables
 
 zb **MUST** pass every environment variable that was specified in the `.drv` file

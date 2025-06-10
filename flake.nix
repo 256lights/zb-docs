@@ -18,6 +18,7 @@
         devShells.default = pkgs.mkShell {
           packages = [
             python
+            pkgs.texliveFull
           ];
         };
       }

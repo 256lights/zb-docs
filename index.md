@@ -6,9 +6,9 @@ Markdown content.
 :maxdepth: 2
 :caption: Contents:
 
+Installation <install>
 getting-started
-Language Reference <lua>
-derivations
-admin-guide
+admin/index
+reference
 ```
 

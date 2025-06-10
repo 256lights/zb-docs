@@ -3,5 +3,15 @@
     {
       "path": "."
     }
-  ]
+  ],
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.live-server",
+      "ms-python.vscode-pylance",
+    ]
+  },
+  "settings": {
+    "livePreview.serverRoot": "/_build/html/",
+    "python.analysis.typeCheckingMode": "standard",
+  }
 }
