@@ -1,15 +1,15 @@
 # Adapted from https://github.com/boolangery/sphinx-luadomain/blob/b2430927a181fbac1e999e40b404a58c99e6e0d3/sphinxcontrib/luadomain.py
 # SPDX-License-Identifier: BSD-3-Clause
 
-import re
-from typing import Any, Dict, List, Tuple, Optional, override
+from typing import Any, Dict, List, NamedTuple, Tuple, Optional, override, TYPE_CHECKING
 
 from docutils import nodes
-from docutils.parsers.rst import directives
+from docutils.parsers.rst import Directive, directives
 from sphinx import addnodes
+from sphinx.application import Sphinx
 from sphinx.builders import Builder
 from sphinx.directives import ObjectDescription
-from sphinx.domains import Domain, ObjType
+from sphinx.domains import Domain, ObjType, Index
 from sphinx.environment import BuildEnvironment
 from sphinx.locale import get_translation
 from sphinx.roles import XRefRole
@@ -17,10 +17,49 @@ from sphinx.util import logging
 from sphinx.util.docfields import Field, TypedField
 from sphinx.util.nodes import make_refnode
 
+if TYPE_CHECKING:
+    from sphinx.writers.latex import LaTeXTranslator
+    from sphinx.writers.html5 import HTML5Translator
+
 logger = logging.getLogger(__name__)
 _ = get_translation('zbluadomain')
 
-sig_re = re.compile(r'^([\w.]*\.)(\w+)\s*(?:\((.*)\)|\{(.*)\})?$')
+class _LuaSignature(NamedTuple):
+    name_prefix: Optional[str]
+    name: str
+    arg_list: Optional[str] = None
+    table_params: bool = False
+
+def _find_any(s: str, charset: str) -> int:
+    for i, c in enumerate(s):
+        if c in charset:
+            return i
+    return -1
+
+def _parse_signature(s: str) -> _LuaSignature:
+    arg_start = _find_any(s, '({')
+    if arg_start >= 0:
+        arg_pair = (s[arg_start], s[-1])
+        if arg_pair not in (('(', ')'), ('{', '}')):
+            raise ValueError('lua function signature: closing parenthesis does not match')
+        args = s[arg_start+1:-1]
+        table_params = arg_pair[0] == '{'
+    else:
+        args = None
+        table_params = False
+    fullname = s[:arg_start].rstrip() if arg_start >= 0 else s
+    dot_index = fullname.rfind('.')
+    if dot_index == len(fullname) - 1:
+        raise ValueError('lua function signature: function name cannot end in dot')
+    if dot_index < 0:
+        return _LuaSignature(None, fullname, args, table_params)
+    return _LuaSignature(fullname[:dot_index], fullname[dot_index+1:], args, table_params)
+
+class desc_table_parameter_list(nodes.Part, nodes.Inline, nodes.FixedTextElement):
+    child_text_separator = ', '
+
+    def astext(self) -> str:
+        return '{' + super().astext() + '}'
 
 class LuaObject(ObjectDescription):
     option_spec = {
@@ -43,12 +82,8 @@ class LuaObject(ObjectDescription):
         return False
 
     @override
-    def handle_signature(self, sig, signode) -> Tuple[str, str]:
-        m = sig_re.match(sig)
-        if m is None:
-            raise ValueError
-        name_prefix, name, arg_list, kwarg_list = m.groups()
-        arg_list = arg_list or kwarg_list
+    def handle_signature(self, sig, signode) -> Tuple[str, Optional[str]]:
+        name_prefix, name, arg_list, table_params = _parse_signature(sig)
 
         # determine module and class name (if applicable), as well as full name
         modname = self.options.get(
@@ -95,7 +130,7 @@ class LuaObject(ObjectDescription):
                 signode += addnodes.desc_parameterlist()
             return fullname, name_prefix
 
-        param_list = addnodes.desc_parameterlist()
+        param_list = desc_table_parameter_list() if table_params else addnodes.desc_parameterlist()
         stack: List[nodes.Element] = [param_list]
         try:
             for argument in arg_list.split(','):
@@ -130,17 +165,17 @@ class LuaObject(ObjectDescription):
             # if there are too few or too many elements on the stack, just give up
             # and treat the whole argument list as one argument, discarding the
             # already partially populated paramlist node
-            param_list = addnodes.desc_parameterlist()
+            param_list = desc_table_parameter_list() if table_params else addnodes.desc_parameterlist()
             param_list += addnodes.desc_parameter(arg_list, arg_list)
         signode += param_list
 
         return fullname, name_prefix
 
-    def get_index_text(self, modname: Optional[str], name: str) -> str:
+    def get_index_text(self, modname: Optional[str], name: Tuple[str, Optional[str]]) -> str:
         raise NotImplementedError('must be implemented in subclasses')
 
     @override
-    def add_target_and_index(self, name: str, sig, signode):
+    def add_target_and_index(self, name: Tuple[str, Optional[str]], sig, signode):
         modname: Optional[str] = self.options.get('module', self.env.ref_context.get('lua:module'))
         fullname = (modname and modname + '.' or '') + name[0]
 
@@ -185,6 +220,72 @@ class LuaData(LuaObject):
         return _('%s() (in module %s)') % (name[0], modname)
 
 
+class LuaModule(Directive):
+    """
+    Directive to mark description of a new module.
+    """
+
+    has_content = False
+    required_arguments = 1
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = {
+        'platform': lambda x: x,
+        'synopsis': lambda x: x,
+        'noindex': directives.flag,
+        'deprecated': directives.flag,
+    }
+
+    @override
+    def run(self):
+        env = self.state.document.settings.env
+        modname = self.arguments[0].strip()
+        no_index = 'noindex' in self.options
+        env.ref_context['lua:module'] = modname
+        ret = []
+        if not no_index:
+            env.domaindata['lua']['modules'][modname] = \
+                (env.docname, self.options.get('synopsis', ''),
+                 self.options.get('platform', ''), 'deprecated' in self.options)
+            # make a duplicate entry in 'objects' to facilitate searching for
+            # the module in LuaDomain.find_obj()
+            env.domaindata['lua']['objects'][modname] = (env.docname, 'module')
+            target_node = nodes.target('', '', ids=['module-' + modname],
+                                      ismod=True)
+            self.state.document.note_explicit_target(target_node)
+            # the platform and synopsis aren't printed; in fact, they are only
+            # used in the modindex currently
+            ret.append(target_node)
+            indextext = _('%s (module)') % modname
+            inode = addnodes.index(entries=[('single', indextext,
+                                             'module-' + modname, '', None)])
+            ret.append(inode)
+        return ret
+
+
+class LuaCurrentModule(Directive):
+    """
+    This directive is just to tell Sphinx that we're documenting
+    stuff in module foo, but links to module foo won't lead here.
+    """
+
+    has_content = False
+    required_arguments = 1
+    optional_arguments = 0
+    final_argument_whitespace = False
+    option_spec = {}
+
+    @override
+    def run(self):
+        env = self.state.document.settings.env
+        modname = self.arguments[0].strip()
+        if modname == 'None':
+            env.ref_context.pop('lua:module', None)
+        else:
+            env.ref_context['lua:module'] = modname
+        return []
+
+
 class LuaXRefRole(XRefRole):
     @override
     def process_link(self, env, refnode, has_explicit_title, title, target):
@@ -202,28 +303,105 @@ class LuaXRefRole(XRefRole):
                     title = title[dot + 1:]
         return title, target
 
+
+class LuaModuleIndex(Index):
+    """
+    Index subclass to provide the Lua module index.
+    """
+
+    name = 'modindex'
+    localname = _('Lua Module Index')
+    shortname = _('modules')
+
+    @override
+    def generate(self, docnames = None):
+        content: Dict[str, List] = {}
+        # list of prefixes to ignore
+        ignores = self.domain.env.config['modindex_common_prefix']
+        ignores = sorted(ignores, key=len, reverse=True)
+        # list of all modules, sorted by module name
+        modules = sorted(self.domain.data['modules'].items(),
+                         key=lambda x: x[0].lower())
+        # sort out collapsable modules
+        prev_modname = ''
+        num_top_levels = 0
+        for modname, (docname, synopsis, platforms, deprecated) in modules:
+            if docnames and docname not in docnames:
+                continue
+
+            for ignore in ignores:
+                if modname.startswith(ignore):
+                    modname = modname[len(ignore):]
+                    stripped = ignore
+                    break
+            else:
+                stripped = ''
+
+            # we stripped the whole module name?
+            if not modname:
+                modname, stripped = stripped, ''
+
+            entries = content.setdefault(modname[0].lower(), [])
+
+            package = modname.split('.')[0]
+            if package != modname:
+                # it's a submodule
+                if prev_modname == package:
+                    # first submodule - make parent a group head
+                    if entries:
+                        entries[-1][1] = 1
+                elif not prev_modname.startswith(package):
+                    # submodule without parent in list, add dummy entry
+                    entries.append([stripped + package, 1, '', '', '', '', ''])
+                subtype = 2
+            else:
+                num_top_levels += 1
+                subtype = 0
+
+            qualifier = deprecated and _('Deprecated') or ''
+            entries.append([stripped + modname, subtype, docname,
+                            'module-' + stripped + modname, platforms,
+                            qualifier, synopsis])
+            prev_modname = modname
+
+        # apply heuristics when to collapse modindex at page load:
+        # only collapse if number of toplevel modules is larger than
+        # number of submodules
+        collapse = len(modules) - num_top_levels < num_top_levels
+
+        # sort by first letter
+        sorted_content = sorted(content.items())
+
+        return sorted_content, collapse
+
+
 class LuaDomain(Domain):
     name = 'lua'
     label = 'Lua'
     object_types = {
         'function': ObjType(_('function'), 'func', 'obj'),
         'data': ObjType(_('data'), 'data', 'obj'),
+        'module': ObjType(_('module'), 'mod', 'obj'),
     }
 
     directives = {
         'function': LuaFunction,
         'data': LuaData,
+        'module': LuaModule,
     }
     roles = {
         'data': LuaXRefRole(),
-        'func': LuaXRefRole(),
+        'func': LuaXRefRole(fix_parens=True),
         'class': LuaXRefRole(),
+        'const': LuaXRefRole(),
+        'mod': LuaXRefRole(),
         'obj': LuaXRefRole(),
     }
     initial_data: Dict[str, Dict[str, Tuple[Any]]] = {
         'objects': {}, # fullname -> docname, objtype
         'modules': {}, # fullname -> docname, synopsis, platform, deprecated
     }
+    indices = [LuaModuleIndex]
 
     @override
     def clear_doc(self, docname):
@@ -359,5 +537,27 @@ class LuaDomain(Domain):
             return '.'.join(filter(None, [modname, class_name, target]))
 
 
-def setup(app):
+def visit_html_table_parameter_list(self: 'HTML5Translator', node: desc_table_parameter_list):
+    self._visit_sig_parameter_list(node, addnodes.desc_parameter, '{', '}')
+
+
+def depart_html_table_parameter_list(self: 'HTML5Translator', node: desc_table_parameter_list):
+    self._depart_sig_parameter_list(node)
+
+
+def visit_latex_table_parameter_list(self: 'LaTeXTranslator', node: desc_table_parameter_list):
+    self.body.append(r'\{')
+    self._visit_sig_parameter_list(node, addnodes.desc_parameter)
+
+
+def depart_latex_table_parameter_list(self: 'LaTeXTranslator', node: desc_table_parameter_list):
+    self.body.append(r'\}')
+
+
+def setup(app: Sphinx):
     app.add_domain(LuaDomain)
+    app.add_node(
+        desc_table_parameter_list,
+        html=(visit_html_table_parameter_list, depart_html_table_parameter_list),
+        latex=(visit_latex_table_parameter_list, depart_latex_table_parameter_list),
+    )
