@@ -53,7 +53,7 @@ def _parse_signature(s: str) -> _LuaSignature:
         raise ValueError('lua function signature: function name cannot end in dot')
     if dot_index < 0:
         return _LuaSignature(None, fullname, args, table_params)
-    return _LuaSignature(fullname[:dot_index], fullname[dot_index+1:], args, table_params)
+    return _LuaSignature(fullname[:dot_index+1], fullname[dot_index+1:], args, table_params)
 
 class desc_table_parameter_list(nodes.Part, nodes.Inline, nodes.FixedTextElement):
     child_text_separator = ', '
