@@ -3,24 +3,9 @@
 This section documents the functions that zb adds to its Lua environment.
 All the functions in this section are available as globals.
 
-:::{lua:function} path(p)
+:::{function} path{path, [name], [filter]}
 
 Copies the file, directory, or symbolic link at `p` into the store.
-This is a common way of loading a program's source code into zb.
-
-:param string p:
-  An absolute path or a path relative to the Lua file that called `path`.
-  Slash-separated relative paths are accepted on all platforms.
-
-:returns: The absolute path to the imported store object.
-
-:rtype: string
-
-:::
-
-:::{lua:function} path{path, name, filter}
-
-`path(p)` copies the file, directory, or symbolic link at `p` into the store.
 This is a common way of loading a program's source code into zb.
 
 When `path` is called from a Lua file inside the store directory,
@@ -45,6 +30,22 @@ it cannot be called to access files outside the store directory.
   If the filter function returns `nil` or `false`,
   then the file will be excluded from import into the store.
   The default behavior of `path` is equivalent to passing `filter = function() return true end`.
+
+:returns: The absolute path to the imported store object.
+
+:rtype: string
+
+:::
+
+:::{function} path(p)
+:noindex:
+
+As a convenience, if you only need to call {lua:func}`path` with the `path` field,
+you can pass the string as the sole argument to `path`.
+
+:param string p:
+  An absolute path or a path relative to the Lua file that called `path`.
+  Slash-separated relative paths are accepted on all platforms.
 
 :returns: The absolute path to the imported store object.
 
