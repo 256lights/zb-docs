@@ -1,3 +1,7 @@
+```{eval-rst}
+.. index:: string; dependencies
+```
+
 # Dependency Information in Strings
 
 Lua strings in zb that represent a store path carry extra dependency information

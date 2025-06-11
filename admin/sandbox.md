@@ -1,16 +1,18 @@
+```{eval-rst}
+.. index:: builder program; sandboxing
+```
+
 # Sandboxing and Permissions
 
 On Unix-like systems,
 store servers require elevated permissions to create sandboxes
 and keep {term}`store objects <store object>` unmodifiable by ordinary users.
-However, {term}`builders <builder>` are run with limited separate privileges
+However, {term}`builders <builder program>` are run with limited separate privileges
 to avoid performing sensitive operations during a build.
 Concurrent builds are run with separate UIDs to avoid interference among builders.
-The installer automatically creates a group called `zbld`
+The installer automatically creates a group called `zbld`,
 and populates it with a few dozen users for this purpose.
-and try to run builders with users from that group.
 The group name created by the installer can be changed via the `./install --build-users-group` flag.
-The store directory must be writable by members of the group.
 
 zb supports sandboxing builds on Linux systems
 so that builders can only access the inputs declared by the build,
@@ -28,7 +30,8 @@ that references a statically compiled version of [BusyBox][].
 
 :::{option} --build-users-group <name>
 
-The name of the Unix group containing Unix users that {term}`builders <builder>` should run as.
+The name of the Unix group containing Unix users that {term}`builders <builder program>` should run as.
+The store directory must be writable by members of the group.
 When `zb serve` is run as root, it will look for the `zbld` group by default.
 
 :::

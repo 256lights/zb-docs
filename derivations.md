@@ -20,6 +20,12 @@ Syntax is defined in Augmented Backus-Naur Form as described in [RFC 5234][] and
 [RFC 7405]: https://datatracker.ietf.org/doc/html/rfc7405
 [Nix's derivation file format]: https://nix.dev/manual/nix/2.24/protocols/derivation-aterm
 
+```{eval-rst}
+.. index::
+  single: .drv file
+  seealso: .drv file; derivation
+```
+
 ## `.drv` format
 
 The `.drv` format uses a subset of the Textual [ATerm][] Format.
@@ -97,8 +103,8 @@ In summary, a `.drv` file consists of:
 - Zero or more *input derivations*.
   A derivation's input derivations **MUST** be built before running the derivation's builder.
 - Zero or more *input sources*.
-- A [*system* triple][].
-- A *builder* program path.
+- A {term}`system triple`.
+- A {term}`builder program` path.
   zb **MUST** use this string as `argv[0]` on Unix systems.
 - Zero or more *builder arguments*.
 - Zero or more *environment variables*.
@@ -107,6 +113,10 @@ In summary, a `.drv` file consists of:
 
 [ATerm]: https://doi.org/10.1002/(SICI)1097-024X(200003)30:3<259::AID-SPE298>3.0.CO;2-Y
 [*system* triple]: https://github.com/256lights/zb/blob/main/internal/system/README.md
+
+```{eval-rst}
+.. index:: single: .drv file; placeholders
+```
 
 ## Placeholders
 
@@ -131,6 +141,10 @@ and if the output name is not `out`,
 then followed by a hyphen (`-`) and followed by the output name.
 
 [Nix-Base-32-encoded]: https://edolstra.github.io/pubs/phd-thesis.pdf#page=97
+
+```{eval-rst}
+.. index:: builder program; environment variables
+```
 
 (environment-variables)=
 ## Environment Variables
@@ -181,6 +195,10 @@ and the builder **MUST** create a file, directory, or symlink
 for each of its outputs.
 Otherwise, zb **SHALL** report the builder run as a failure.
 
+```{eval-rst}
+.. index:: builder program; files
+```
+
 ## Filesystem
 
 zb **MAY** restrict the filesystem available to a builder to a limited subset
@@ -201,6 +219,10 @@ that **SHALL** be available to the builder when it runs.
 If any files or directories named in `__buildSystemDeps` do not exist
 or zb's security policy does not permit access to the requested file,
 zb **MUST NOT** run the builder and **MUST** report the builder run as a failure.
+
+```{eval-rst}
+.. index:: builder program; network access
+```
 
 ## Network Access
 

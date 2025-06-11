@@ -2,17 +2,18 @@
 
 :::{glossary}
 
-builder
 builder program
   The program run in a {term}`derivation`.
+  Sometimes shortened to "builder".
 
 derivation
   A build step.
-  A description of a program to run — called a {term}`builder` —
+  A description of a program to run — called a {term}`builder program` —
   to produce files.
   Derivations can depend on the results of other derivations.
+  Derivations are created with the {lua:func}`derivation` built-in function.
+  See the [Derivation Specification](derivations.md) for a full reference.
 
-store
 store directory
   A collection of build artifacts and source files,
   each of which is called a {term}`store object`.
@@ -25,7 +26,7 @@ store path
 
 system value
 system triple
-  The `system` value of a {term}`derivation` is used to specify a class of machines that can execute the derivation's {term}`builder`.
+  The `system` value of a {term}`derivation` is used to specify a class of machines that can execute the derivation's {term}`builder <builder program>`.
   The format is intentionally compatible with [LLVM target triples][]
   (which are, in turn, similar to GCC target triples).
   `system` values are a hyphen-separated collection of architecture, vendor, operating system, and environment components.

@@ -23,6 +23,9 @@ is as documented in the [Lua 5.4 manual][].
 
 ## Basics (`_G`)
 
+```{module} _G
+```
+
 The following [basic functions][] are available as globals:
 
 - [`assert`](https://www.lua.org/manual/5.4/manual.html#pdf-assert)
@@ -61,6 +64,9 @@ is currently missing, but [planned](https://github.com/256lights/zb/issues/40).
 
 ## Mathematics
 
+```{module} math
+```
+
 The following symbols are available in the [`math` library][math library]:
 
 - [`abs`](https://www.lua.org/manual/5.4/manual.html#pdf-math.abs)
@@ -95,6 +101,9 @@ Intentionally absent are:
 - [`randomseed`](https://www.lua.org/manual/5.4/manual.html#pdf-math.randomseed)
 
 ## String Manipulation
+
+```{module} string
+```
 
 The following symbols are available in the [`string` library][string manipulation library]:
 
@@ -137,6 +146,9 @@ However, ranges using escapes (e.g. ``[%]-`]``) are well-defined in this impleme
 
 ## Table Manipulation
 
+```{module} table
+```
+
 All of the symbols in the [`table` library][table manipulation library] are available:
 
 - [`concat`](https://www.lua.org/manual/5.4/manual.html#pdf-table.concat)
@@ -149,6 +161,9 @@ All of the symbols in the [`table` library][table manipulation library] are avai
 
 ## UTF-8
 
+```{module} utf8
+```
+
 All of the symbols in the [`utf8` library][UTF-8 library] are available:
 
 - [`char`](https://www.lua.org/manual/5.4/manual.html#pdf-utf8.char)
@@ -160,7 +175,19 @@ All of the symbols in the [`utf8` library][UTF-8 library] are available:
 
 ## Operating System
 
+```{module} os
+```
+
 The only symbol available in the [`os` library][operating system library]
 is [`os.getenv`](https://www.lua.org/manual/5.4/manual.html#pdf-os.getenv).
-`os.getenv` only operates on an allow-list of variables permitted by the user
-and returns `fail` for all other variables.
+
+```{function} os.getenv(varname)
+
+Returns the value of the process environment variable `varname`
+or `fail` if the variable is not defined
+or not in the allow-list of variables permitted by the user.
+
+:param string varname: Environment variable name.
+
+:rtype: string|nil
+```

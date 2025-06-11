@@ -1,6 +1,6 @@
 # Hash Strings
 
-Certain zb functions take a *hash string* argument.
+Certain zb functions take a *{index}`hash string`* argument.
 Hash strings are the result of a [cryptographic hash function][]
 and are used to ensure integrity of an output.
 Hash strings are either in the format `<type>:<base16|base32|base64>`

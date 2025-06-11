@@ -1,5 +1,9 @@
 # Storage
 
+```{eval-rst}
+.. index:: store directory
+```
+
 As mentioned in [Architecture](architecture.md), a store server manages a single {term}`store directory`.
 Along with the build artifacts themselves,
 zb must maintain metadata about the build artifacts and their relationships.

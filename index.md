@@ -16,4 +16,5 @@ admin/index
 Language Reference <lua/index>
 derivations
 glossary
+genindex
 ```

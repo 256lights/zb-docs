@@ -58,7 +58,7 @@ you can pass the string as the sole argument to `path`.
 `derivation` adds a [`.drv` file][Derivation Specification] to the store
 specifying a {term}`derivation` that can be built.
 `derivation` takes a table as its sole argument.
-All fields in the table are passed to the `builder` program as environment variables.
+All fields in the table are passed to the {term}`builder program` as environment variables.
 The values can be strings, numbers, booleans, or lists of any of the previous types.
 A string is used as-is.
 Numbers are converted to strings.

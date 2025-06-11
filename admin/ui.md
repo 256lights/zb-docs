@@ -1,3 +1,7 @@
+```{eval-rst}
+.. index:: graphical user interface, web interface
+```
+
 # Graphical User Interface
 
 A zb server can optionally run a web server that provides a graphical user interface (GUI).
