@@ -41,4 +41,14 @@ primary_domain = 'lua'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'alabaster'
+html_theme_options = {
+    "logo": "LogoRainbow.svg",
+    "logo_name": True,
+    "font_family": '"Titillium Web", sans-serif',
+    "code_font_family": '"Go Mono", monospace',
+    "github_button": True,
+    "github_type": "star",
+    "github_user": "256lights",
+    "github_repo": "zb",
+}
 html_static_path = ['_static']

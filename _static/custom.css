@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'Titillium Web';
+  font-weight: 400;
+  src: url(TitilliumWeb-Regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-weight: 400;
+  font-style: italic;
+  src: url(TitilliumWeb-Italic.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-weight: 600;
+  src: url(TitilliumWeb-SemiBold.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-weight: 700;
+  src: url(TitilliumWeb-Bold.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-weight: 700;
+  font-style: italic;
+  src: url(TitilliumWeb-BoldItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Go Mono';
+  font-weight: 400;
+  src: url(GoMono-Regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Go Mono';
+  font-weight: 400;
+  font-style: italic;
+  src: url(GoMono-Italic.woff) format('woff');
+}
+@font-face {
+  font-family: 'Go Mono';
+  font-weight: 700;
+  src: url(GoMono-Bold.woff) format('woff');
+}
+@font-face {
+  font-family: 'Go Mono';
+  font-weight: 700;
+  font-style: italic;
+  src: url(GoMono-BoldItalic.woff) format('woff');
+}
+
+div.logo>a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: fit-content;
+}
+@media screen and (max-width: 940px) {
+  div.logo {
+    background: white;
+    padding: 0.5rem;
+  }
+  div.logo>a {
+    color: #444;
+  }
+}
+img.logo {
+  display: block;
+  margin-inline-end: 1rem;
+  height: 2rem;
+  width: auto;
+}
