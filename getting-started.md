@@ -55,7 +55,8 @@ Out of the box, zb only knows how to run programs and download source.
 However, zb has a standard library that can be fetched
 to provide tools for some common programming languages.
 In your editor, enter the following into a new file `zb.lua`
-in the same directory as `hello.c`:
+in the same directory as `hello.c`
+(we'll walk through this code in a moment):
 
 ```lua
 -- zb.lua
@@ -79,20 +80,21 @@ local src = path {
 }
 
 -- Create our build target.
-for _, system in ipairs(stdenv.systems) do
-  _G[system] = {
-    hello = stdenv.makeDerivation {
-      pname = "hello";
-      src = src;
-      buildSystem = system;
+hello = stdenv.makeDerivation {
+  pname = "hello";
+  src = src;
 
-      buildPhase = "gcc -o hello hello.c";
-      installPhase = '\z
-        mkdir -p "$out/bin"\n\z
-        mv hello "$out/bin/hello"\n';
-    };
-  }
-end
+  -- Replace with your system, if necessary.
+  -- One of:
+  -- x86_64-unknown-linux
+  -- aarch64-apple-macos
+  buildSystem = "x86_64-unknown-linux";
+
+  buildPhase = "gcc -o hello hello.c";
+  installPhase = '\z
+    mkdir -p "$out/bin"\n\z
+    mv hello "$out/bin/hello"\n';
+};
 ```
 
 Now we can build the program with `zb build`.
@@ -112,8 +114,6 @@ The fragment (i.e. everything after the `#`)
 names a variable to build.
 In this case, we're building `hello`.
 `zb build` will automatically look for a global called `hello` defined inside `zb.lua`.
-When it finds `nil`, then it looks for `hello`
-inside a table with the same name as the currently running platform (e.g. `x86-unknown-linux`).
 
 At the end, `zb build` will print the path to the directory it created,
 something like `/opt/zb/store/2lvf1cavwkainjz32xzja04hfl5cimx6-hello`.
@@ -138,17 +138,17 @@ local zb <const> = fetchArchive {
 }
 ```
 
-`fetchArchive` is a built-in global function that returns a **derivation**
+{lua:func}`fetchArchive` is a built-in global function that returns a {term}`derivation`
 that extracts the tarball or zip file downloaded from a URL.
 
-A **derivation** in zb is a build step:
-a description of a program — called a *builder* — to run to produce files,
-along with the builder's dependencies.
+A {term}`derivation` in zb is a build step:
+a description of a program — called a {term}`builder <builder program>` — to run to produce files.
+Derivations can depend on the results of other derivations.
 Creating a derivation does not run its builder;
-derivations only record how to invoke a builder.
+creating a derivations records how to invoke its builder.
 We use `zb build` to run builders,
 or as we'll see in a moment,
-the `import` function will implicitly run the builder.
+the {lua:func}`import` function will implicitly run the builder.
 
 Finally, derivations can be used like strings.
 For example, derivations can be concatenated or passed as an argument to `tostring`.
@@ -167,7 +167,7 @@ local stdenv = import(zb.."/stdenv/stdenv.lua")
 ```
 
 Every Lua file that zb encounters is treated as a separate module.
-The `import` built-in global function returns the module at the path given as an argument.
+The {lua:func}`import` built-in global function returns the module at the path given as an argument.
 This is similar to the `dofile` and `require` functions in standalone Lua
 (which are not supported in zb),
 but `import` is special in a few ways:
@@ -188,7 +188,7 @@ but `import` is special in a few ways:
 Together, these aspects allow imports to be reordered or run lazily
 without fear of unintended side effects.
 
-One other interesting property of the `import` function
+One other interesting property of the {lua:func}`import` function
 is that if you use a path created from a derivation,
 it will build the derivation.
 So `zb.."/stdenv/stdenv.lua"` will build the `zb` derivation
@@ -196,7 +196,7 @@ and then import the `stdenv/stdenv.lua` file inside the output.
 
 ## Importing the Source
 
-The `path` built-in function imports files for use in a derivation:
+The {lua:func}`path` built-in function imports files for use in a derivation:
 
 ```lua
 local src = path {
@@ -214,28 +214,25 @@ so minimizing the number of files is important for faster incremental builds.
 
 ## Creating a Derivation
 
-Finally, for each system that the standard library supports,
-we create a table with the `hello` derivation:
+Finally, we declare a `hello` variable with a derivation value:
 
 ```lua
-for _, system in ipairs(stdenv.systems) do
-  _G[system] = {
-    hello = stdenv.makeDerivation {
-      pname = "hello";
-      src = src;
-      buildSystem = system;
+hello = stdenv.makeDerivation {
+  pname = "hello";
+  src = src;
 
-      buildPhase = "gcc -o hello hello.c";
-      installPhase = '\z
-        mkdir -p "$out/bin"\n\z
-        mv hello "$out/bin/hello"\n';
-    };
-  }
-end
+  -- Replace with your system, if necessary.
+  -- One of:
+  -- x86_64-unknown-linux
+  -- aarch64-apple-macos
+  buildSystem = "x86_64-unknown-linux";
+
+  buildPhase = "gcc -o hello hello.c";
+  installPhase = '\z
+    mkdir -p "$out/bin"\n\z
+    mv hello "$out/bin/hello"\n';
+};
 ```
-
-`stdenv.systems` is a table containing the platforms that the standard library supports
-(e.g. `"x86_64-unknown-linux"`).
 
 `stdenv.makeDerivation` is a function that returns a derivation.
 It provides GCC and a minimal set of standard Unix tools.
