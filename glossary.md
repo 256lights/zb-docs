@@ -30,12 +30,13 @@ system triple
   The format is intentionally compatible with [LLVM target triples][]
   (which are, in turn, similar to GCC target triples).
   `system` values are a hyphen-separated collection of architecture, vendor, operating system, and environment components.
-  The syntax of a `system` value is defined in [`system` values specification][].
-  Example values include:
+  Common values include:
 
-  - `x86_64-unknown-linux`
-  - `aarch64-apple-macos`
-  - `x86_64-pc-windows`
+  - `x86_64-unknown-linux` for Linux running on a 64-bit Intel CPU
+  - `aarch64-apple-macos` for macOS running on a 64-bit ARM processor (Apple Silicon)
+  - `x86_64-pc-windows` for Windows running on a 64-bit Intel CPU
+
+  The full syntax of a `system` value is defined in [`system` values specification][].
 
 :::
 
