@@ -19,8 +19,7 @@ jobs:
       - name: Sphinx
         run: |-
           nix develop \
-            --set-env-var SOURCE_DATE_EPOCH "$(git show --no-patch --format='%ct' HEAD)" \
-            --command make html
+            --command make SOURCE_DATE_EPOCH="$(git show --no-patch --format='%ct' HEAD)" html
       - name: Save Output
         id: upload
         uses: actions/upload-pages-artifact@v3
