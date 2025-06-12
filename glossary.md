@@ -18,6 +18,11 @@ store directory
   A collection of build artifacts and source files,
   each of which is called a {term}`store object`.
 
+  The conventional store directory is:
+
+  - `/opt/zb/store` on Linux and macOS
+  - `C:\zb\store` on Windows
+
 store object
   A file, directory, or symbolic link that is an immediate child of the {term}`store directory`.
 
