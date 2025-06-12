@@ -22,6 +22,7 @@ release = '0.1.0'
 extensions = [
     'myst_parser',
     'zbluadomain',
+    'zbtemplatefuncs',
 ]
 
 myst_enable_extensions = [
@@ -52,3 +53,7 @@ html_theme_options = {
     "github_repo": "zb",
 }
 html_static_path = ['_static']
+html_additional_pages = {
+    'pkg/index': 'gopkg.html.jinja',
+    'pkg/zbstore': 'gopkg.html.jinja',
+}
