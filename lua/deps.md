@@ -6,9 +6,9 @@
 
 Lua strings in zb that represent a store path carry extra dependency information
 that is used when creating store objects derived from those strings.
-For example, passing a string returned from the `path` function
-into the `derivation` function will add the store path as an input to the derivation.
-Similarly, passing the `out` field of a derivation object to another `derivation` function call
+For example, passing a string returned from the {lua:func}`path` function
+into the {lua:func}`derivation` function will add the store path as an input to the derivation.
+Similarly, passing the `out` field of a derivation object to another {lua:func}`derivation` function call
 will add the derivation object as a build dependency of the new derivation.
 
 String dependency information is not directly accessible in the Lua environment,
