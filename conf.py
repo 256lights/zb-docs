@@ -21,6 +21,7 @@ release = '0.1.0'
 
 extensions = [
     'myst_parser',
+    'sphinx.ext.githubpages',
     'zbluadomain',
     'zbtemplatefuncs',
 ]
@@ -41,6 +42,7 @@ primary_domain = 'lua'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
+html_baseurl = 'https://zb.256lights.llc/'
 html_theme = 'alabaster'
 html_theme_options = {
     "logo": "LogoRainbow.svg",
