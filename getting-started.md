@@ -31,19 +31,13 @@ The standard library currently supports:
 
 If you haven't already, follow the [installation instructions](install.md).
 
-## Tutorial
+## First Steps
 
 Let's start with a C "Hello, World" program.
 Open your editor of choice and enter the following into a new file `hello.c`:
 
-```c
-/* hello.c */
-#include <stdio.h>
-
-int main() {
-  printf("Hello, World!\n");
-  return 0;
-}
+```{literalinclude} tutorial/hello.c
+:language: c
 ```
 
 Now let's learn how to build `hello.c` into an executable with zb.
@@ -58,43 +52,9 @@ In your editor, enter the following into a new file `zb.lua`
 in the same directory as `hello.c`
 (we'll walk through this code in a moment):
 
-```lua
--- zb.lua
-
--- Download the standard library.
-local zb <const> = fetchArchive {
-  url = "https://github.com/256lights/zb-stdlib/releases/download/v0.1.0/zb-stdlib-v0.1.0.tar.gz";
-  hash = "sha256:dd040fe8baad8255e4ca44b7249cddfc24b5980f707a29c3b3e2b47f5193ea48";
-}
-
--- Import modules from the standard library.
-local stdenv = import(zb.."/stdenv/stdenv.lua")
-
--- Copy the source to the store.
-local src = path {
-  path = ".";
-  name = "hello-source";
-  filter = function(name)
-    return name == "hello.c"
-  end;
-}
-
--- Create our build target.
-hello = stdenv.makeDerivation {
-  pname = "hello";
-  src = src;
-
-  -- Replace with your system, if necessary.
-  -- One of:
-  -- x86_64-unknown-linux
-  -- aarch64-apple-macos
-  buildSystem = "x86_64-unknown-linux";
-
-  buildPhase = "gcc -o hello hello.c";
-  installPhase = '\z
-    mkdir -p "$out/bin"\n\z
-    mv hello "$out/bin/hello"\n';
-};
+```{literalinclude} tutorial/zb.lua
+:language: lua
+:end-before: sqlite3 =
 ```
 
 Now we can build the program with `zb build`.
@@ -127,15 +87,14 @@ Hello, World!
 
 In the next few sections, we'll explain the `zb.lua` script in more detail.
 
-## Derivation Basics
+### Derivation Basics
 
 The first section downloads [the standard library][] from GitHub:
 
-```lua
-local zb <const> = fetchArchive {
-  url = "https://github.com/256lights/zb-stdlib/releases/download/v0.1.0/zb-stdlib-v0.1.0.tar.gz";
-  hash = "sha256:dd040fe8baad8255e4ca44b7249cddfc24b5980f707a29c3b3e2b47f5193ea48";
-}
+```{literalinclude} tutorial/zb.lua
+:language: lua
+:start-after: -- Download the standard library.
+:end-before: -- Import modules from the standard library.
 ```
 
 {lua:func}`fetchArchive` is a built-in global function that returns a {term}`derivation`
@@ -158,12 +117,14 @@ it implicitly adds a dependency on the derivation.
 
 [the standard library]: https://github.com/256lights/zb-stdlib
 
-## Modules and Imports
+### Modules and Imports
 
 The next section loads a Lua module from the zb standard library:
 
-```lua
-local stdenv = import(zb.."/stdenv/stdenv.lua")
+```{literalinclude} tutorial/zb.lua
+:language: lua
+:start-after: -- Import modules from the standard library.
+:end-before: -- Copy the source to the store.
 ```
 
 Every Lua file that zb encounters is treated as a separate module.
@@ -192,46 +153,31 @@ One other interesting property of the {lua:func}`import` function
 is that if you use a path created from a derivation,
 it will build the derivation.
 So `zb.."/stdenv/stdenv.lua"` will build the `zb` derivation
-and then import the `stdenv/stdenv.lua` file inside the output.
+and then import the [`stdenv/stdenv.lua` file](https://github.com/256lights/zb-stdlib/blob/v0.1.1/stdenv/stdenv.lua)
+inside the output.
 
-## Importing the Source
+### Making the Source Available to the Build
 
 The {lua:func}`path` built-in function imports files for use in a derivation:
 
-```lua
-local src = path {
-  path = ".";
-  name = "hello-source";
-  filter = function(name)
-    return name == "hello.c"
-  end;
-}
+```{literalinclude} tutorial/zb.lua
+:language: lua
+:start-after: -- Copy the source to the store.
+:end-before: -- Create our build target.
 ```
 
 The `filter` function allows us to create an allow-list of files in the folder to use.
 Changing any file inside a source causes the derivation to be rebuilt on the next `zb build`,
 so minimizing the number of files is important for faster incremental builds.
 
-## Creating a Derivation
+### Creating a Derivation
 
 Finally, we declare a `hello` variable with a derivation value:
 
-```lua
-hello = stdenv.makeDerivation {
-  pname = "hello";
-  src = src;
-
-  -- Replace with your system, if necessary.
-  -- One of:
-  -- x86_64-unknown-linux
-  -- aarch64-apple-macos
-  buildSystem = "x86_64-unknown-linux";
-
-  buildPhase = "gcc -o hello hello.c";
-  installPhase = '\z
-    mkdir -p "$out/bin"\n\z
-    mv hello "$out/bin/hello"\n';
-};
+```{literalinclude} tutorial/zb.lua
+:language: lua
+:start-after: -- Create our build target.
+:end-before: sqlite3 =
 ```
 
 `stdenv.makeDerivation` is a function that returns a derivation.
@@ -243,13 +189,68 @@ The `installPhase` specifies a snippet of Bash script
 to copy the program to `$out`,
 the path to where the derivation's output must be placed.
 
+## Using Dependencies
+
+Now that we know the basics, let's see how to pull in a C library from the internet.
+Add the following to the end of `zb.lua`:
+
+```{literalinclude} tutorial/zb.lua
+:language: lua
+:start-at: sqlite3 =
+:end-before: -- Dependencies:
+```
+
+Like before, we can build it with `zb build zb.lua#sqlite3`.
+Because the source archive includes a `configure` script and a Makefile,
+then `stdenv.makeDerivation` knows how to build the package.
+You can see that the resulting directory includes `bin/sqlite3`,
+a `lib` directory,
+and an `include` directory.
+
+Now let's see how to compile the [SQLite Quickstart](https://www.sqlite.org/quickstart.html) example.
+Create another file, `hello_sql.c`, in the same directory as `zb.lua`:
+
+```{literalinclude} tutorial/hello_sql.c
+:language: c
+```
+
+Then add to the end of `zb.lua`:
+
+```{literalinclude} tutorial/zb.lua
+:language: lua
+:start-after: -- Dependencies:
+```
+
+This is mostly the same as our `hello` example from before,
+but we do a few new things:
+
+- We import the [`strings.lua` file](https://github.com/256lights/zb-stdlib/blob/v0.1.1/strings.lua)
+  from the standard library.
+  The `strings.makeIncludePath` and `strings.makeLibraryPath` functions
+  join the elements in the table with colons
+  and appends `/include` or `/lib`, respectively, to each element.
+- We set the `C_INCLUDE_PATH` and `LIBRARY_PATH` environment variables
+  to point to the `sqlite3` derivation.
+  As you'll recall, derivations can be used like strings
+  and automatically introduce a dependency from `hello_sql` to `sqlite3`.
+
 ## Wrapping Up
 
 In this guide, we wrote a simple build configuration for a single-file C program.
+Then, we built SQLite from source,
+and finally, we built a C program that used SQLite as a dependency.
+
+Throughout this tutorial, there have been links to reference documentation.
 The [language reference](lua/index.md) describes the flavor of Lua that zb understands,
 as well as its built-in functions.
 The [standard library repository](https://github.com/256lights/zb-stdlib)
 includes other packages and utility functions that can be useful.
+
+Here are the final versions of the files:
+
+- [zb.lua](tutorial/zb.lua)
+- [hello.c](tutorial/hello.c)
+- [hello_sql.c](tutorial/hello_sql.c)
 
 zb is still in early development.
 If you have questions or feedback, [open a discussion on GitHub](https://github.com/256lights/zb/discussions).
