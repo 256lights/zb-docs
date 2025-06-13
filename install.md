@@ -53,3 +53,36 @@ To fully remove zb from your machine:
 3. Delete the {term}`store directory`.
 4. Remove the `zbld` Unix users.
 5. Remove the `zbld` Unix group.
+
+## NixOS
+
+zb also includes a Nix flake for easy installation on NixOS.
+If you're using a flake-based NixOS configuration,
+you can use a configuration like this:
+
+```nix
+{
+   inputs = {
+      nixpkgs.url = "nixpkgs/nixos-unstable";
+      zb.url = "github:256lights/zb/v0.1.0";
+   };
+
+   outputs = { self, nixpkgs, zb, ... }: {
+      nixosConfigurations.foo = nixpkgs.lib.nixosSystem {
+         system = "x86_64-linux";
+         modules = [
+            zb.nixosModules.default
+         ];
+      };
+   };
+}
+```
+
+This module will make the same system-wide changes that the installer would.
+It also creates a systemd unit that will create the `/opt/zb/store` {term}`store directory` on first run
+and copy the objects from the installer.
+
+If you're using Nix for package management on a non-NixOS operating system,
+we recommend using the generic installer
+rather than trying to manage zb through Nix.
+zb has its own {term}`store directory` that provides management capabilities similar to Nix.
