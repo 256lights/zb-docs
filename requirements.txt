@@ -1,2 +1,3 @@
 sphinx==8.2.3
+sphinx-reredirects==0.1.6
 myst-parser==4.0.1

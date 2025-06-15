@@ -21,6 +21,7 @@ author = 'The zb Authors'
 extensions = [
     'myst_parser',
     'sphinx.ext.githubpages',
+    'sphinx_reredirects',
     'zbluadomain',
     'zbtemplatefuncs',
 ]
@@ -35,8 +36,6 @@ myst_enable_extensions = [
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 primary_domain = 'lua'
-
-
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -57,4 +56,8 @@ html_static_path = ['_static']
 html_additional_pages = {
     'pkg/index': 'gopkg.html.jinja',
     'pkg/zbstore': 'gopkg.html.jinja',
+}
+
+redirects = {
+    'vs-nix': 'comparison.html',
 }

@@ -10,6 +10,7 @@ If you're new to zb, check out the [Getting Started guide](getting-started.md).
 ## What is zb?
 
 zb is a tool for reproducibly building software, similar to [Bazel][].
+(See the [comparison page](comparison.md#bazel) if you're curious to know the differences.)
 When a software build process is [reproducible][@wikipedia_reproducible_2025],
 it will produce the exact same output
 when given the same inputs.
@@ -73,7 +74,7 @@ zb simplifies reproducible builds.
 Installation <install>
 getting-started
 admin/index
-vs-nix
+comparison
 ```
 
 ```{toctree}

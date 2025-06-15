@@ -12,6 +12,7 @@
         python = pkgs.python3.withPackages (ps: [
           ps.myst-parser
           ps.sphinx
+          ps.sphinx-reredirects
         ]);
       in
       {
