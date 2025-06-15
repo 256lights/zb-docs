@@ -81,3 +81,11 @@ derivations
 glossary
 genindex
 ```
+
+```{toctree}
+:caption: Community
+:hidden:
+
+support
+Contributing <CONTRIBUTING>
+```
