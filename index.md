@@ -10,14 +10,17 @@ If you're new to zb, check out the [Getting Started guide](getting-started.md).
 ## What is zb?
 
 zb is a tool for reproducibly building software, similar to [Bazel][].
+When a software build process is [reproducible][@wikipedia_reproducible_2025],
+it will produce the exact same output
+when given the same inputs.
 Reproducibility is a desirable property for a software build process to have:
 it simplifies debugging,
 it enables build speed-ups,
 and it is essential for [digital supply chain security][].
 However, reproducibility is a difficult goal to achieve.
 
-Many software build processes introduce non-determinism
-because they fail to ensure the same versions of their development tools (dependencies)
+Many software build processes are not reproducible
+because they neglect to ensure the same versions of their development tools or libraries (dependencies)
 are used across machines.
 Approaches like virtual machines or containers lock dependency versions across machines,
 but rely on large base binary images
@@ -55,6 +58,7 @@ zb simplifies reproducible builds.
 - Consistency of build artifact paths across machines
   enables distributed caching and remote builds.
 
+[@wikipedia_reproducible_2025]: https://en.wikipedia.org/wiki/Reproducible_builds
 [@wikipedia_lua_2024]: https://en.wikipedia.org/wiki/Lua_(programming_language)#Applications
 [Bazel]: https://bazel.build/
 [content-addressable storage]: https://en.wikipedia.org/wiki/Content-addressable_storage
