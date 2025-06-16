@@ -47,12 +47,15 @@ zb simplifies reproducible builds.
 - zb runs every build step in a lightweight sandbox
   with limited environment variables and filesystem access
   to reduce the likelihood of unexpected dependencies.
+  The sandbox doesn't rely on containers or virtual machines,
+  so zb works even in restricted continuous integration (CI) environments.
 - zb stores builds artifacts as plain files and directories.
-  zb doesn't use containers or virtual machines,
   so you can run development tools and build artifacts
   directly from zb's store.
   This means you can point your IDE to use the exact compiler or intepreter
   that your build is using, for example.
+  It also means that zb's build artifacts can be copied directly into a container or virtual machine image
+  without fuss.
 - zb stores all build artifacts and source code in [content-addressable storage][].
   The name of a build directory includes a [hash][] of all its contents,
   so it's easy to see at a glance whether two versions of a dependency are the same.
