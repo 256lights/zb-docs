@@ -49,7 +49,7 @@ zb simplifies reproducible builds.
   to reduce the likelihood of unexpected dependencies.
   The sandbox doesn't rely on containers or virtual machines,
   so zb works even in restricted continuous integration (CI) environments.
-- zb stores builds artifacts as plain files and directories.
+- zb stores build artifacts as plain files and directories.
   so you can run development tools and build artifacts
   directly from zb's store.
   This means you can point your IDE to use the exact compiler or intepreter
