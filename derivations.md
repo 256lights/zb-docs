@@ -109,10 +109,9 @@ In summary, a `.drv` file consists of:
 - Zero or more *builder arguments*.
 - Zero or more *environment variables*.
   These are string key/value pairs.
-  See the ["Environment Variables" section](#environment-variables) below for the semantics.
+  See the ["Environment Variables" section](project:#derivation-environment-variables) for the semantics.
 
 [ATerm]: https://doi.org/10.1002/(SICI)1097-024X(200003)30:3<259::AID-SPE298>3.0.CO;2-Y
-[*system* triple]: https://github.com/256lights/zb/blob/main/internal/system/README.md
 
 ```{eval-rst}
 .. index:: single: .drv file; placeholders
@@ -146,7 +145,7 @@ then followed by a hyphen (`-`) and followed by the output name.
 .. index:: builder program; environment variables
 ```
 
-(environment-variables)=
+(derivation-environment-variables)=
 ## Environment Variables
 
 zb **MUST** pass every environment variable that was specified in the `.drv` file

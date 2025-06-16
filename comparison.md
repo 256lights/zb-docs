@@ -2,7 +2,7 @@
 
 This document aims to highlight the differences between zb and other tools.
 
-(bazel)=
+(bazel-comparison)=
 ## Bazel
 
 Bazel and zb share the very similar goal to build software in a reproducible manner.
@@ -31,7 +31,7 @@ zb mostly differs in how it achieves the goal:
 [runfiles]: https://bazel.build/reference/be/common-definitions#common.data
 [Starlark]: https://bazel.build/rules/language
 
-(nix)=
+(nix-comparison)=
 ## Nix
 
 Many of the techniques in zb were pioneered by the [Nix][] package manager.
