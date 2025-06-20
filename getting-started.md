@@ -189,6 +189,17 @@ The `installPhase` specifies a snippet of Bash script
 to copy the program to `$out`,
 the path to where the derivation's output must be placed.
 
+:::{note}
+
+`\z` is Lua's line continuation escape sequence.
+As per the [Lua reference manual](https://www.lua.org/manual/5.4/manual.html#3.1):
+
+> The escape sequence `\z` skips the following span of whitespace characters, including line breaks;
+> it is particularly useful to break and indent a long literal string into multiple lines
+> without adding the newlines and spaces into the string contents.
+
+:::
+
 ## Using Dependencies
 
 Now that we know the basics, let's see how to pull in a C library from the internet.
