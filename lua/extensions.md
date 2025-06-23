@@ -53,6 +53,23 @@ you can pass the string as the sole argument to `path`.
 
 :::
 
+:::{function} readFile(p)
+
+```{versionadded} 0.2
+```
+
+`readFile` reads the contents of a file into a string.
+
+:param string p:
+  An absolute path or a path relative to the Lua file that called `readFile`.
+  Slash-separated relative paths are accepted on all platforms.
+
+:returns: The content of the file.
+
+:rtype: string
+
+:::
+
 :::{function} derivation(env)
 
 `derivation` adds a [`.drv` file][Derivation Specification] to the store
