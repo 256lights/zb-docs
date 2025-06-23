@@ -55,6 +55,9 @@ you can pass the string as the sole argument to `path`.
 
 :::{function} readFile(p)
 
+```{versionadded} 0.2
+```
+
 `readFile` reads the contents of a file into a string.
 
 :param string p:
