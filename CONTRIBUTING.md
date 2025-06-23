@@ -14,7 +14,11 @@ Contributors to zb must follow the [zb Code of Conduct](http://github.com/256lig
 
 ## Improving the Documentation
 
-This website is [hosted on GitHub](https://github.com/256lights/zb-docs).
+This website's source is [hosted on GitHub](https://github.com/256lights/zb-docs)
+and written in a superset of Markdown called [MyST][].
+The website is built using [Sphinx][].
 If you want to improve the docs, please feel free to submit a [pull request][].
 
+[MyST]: https://myst-parser.readthedocs.io/en/latest/
+[Sphinx]: https://www.sphinx-doc.org/
 [pull request]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
