@@ -19,6 +19,7 @@
         devShells.default = pkgs.mkShell {
           packages = [
             python
+            pkgs.netlify-cli
             pkgs.texliveFull
           ];
         };

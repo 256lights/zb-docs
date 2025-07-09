@@ -1,0 +1,9 @@
+# Copyright 2025 The zb Authors
+# SPDX-License-Identifier: MIT
+
+[build]
+command = "make html"
+publish = "_build/html"
+
+[build.environment]
+PYTHON_VERSION = "3.12.10"

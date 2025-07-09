@@ -3,3 +3,6 @@
 # Python
 *.pyc
 __pycache__/
+
+# Local Netlify folder
+.netlify
