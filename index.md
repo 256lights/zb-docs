@@ -86,6 +86,7 @@ comparison
 
 Language Reference <lua/index>
 derivations
+paths
 glossary
 genindex
 ```

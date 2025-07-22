@@ -28,6 +28,7 @@ store object
 
 store path
   An absolute filesystem path of a {term}`store object`.
+  See the page on [Store Paths](paths.md) for a full reference.
 
 system value
 system triple
