@@ -19,6 +19,14 @@ and written in a superset of Markdown called [MyST][].
 The website is built using [Sphinx][].
 If you want to improve the docs, please feel free to submit a [pull request][].
 
+The website is built from the [`publish` branch][],
+which may lag behind the `main` branch during development.
+Once zb reaches 1.0, it's likely there will not be a distinction,
+but the intent is to reduce confusion for users
+while features are still being developed.
+Until then, the `main` branch is published at <https://main--zb-docs.netlify.app/>
+
 [MyST]: https://myst-parser.readthedocs.io/en/latest/
 [Sphinx]: https://www.sphinx-doc.org/
+[`publish` branch]: https://github.com/256lights/zb-docs/tree/publish
 [pull request]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
