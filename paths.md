@@ -49,6 +49,7 @@ are referred to the {index}`store object's name <store object; name, store path;
 
 [RFC 5234]: https://datatracker.ietf.org/doc/html/rfc5234
 
+(path-algorithm)=
 ## Computing the Digest
 
 Store paths are computed based on the contents of the store object.

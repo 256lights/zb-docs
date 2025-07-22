@@ -118,6 +118,7 @@ In summary, a `.drv` file consists of:
 .. index:: single: .drv file; placeholders
 ```
 
+(derivation-placeholders)=
 ## Placeholders
 
 Environment variable values, the builder string, and builder arguments

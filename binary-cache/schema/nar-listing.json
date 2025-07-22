@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "NAR listing",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "root"],
+  "properties": {
+    "version": {"const": 1},
+    "root": {
+      "$ref": "#/definitions/fso",
+      "description": "The store object's filesystem object"
+    }
+  },
+  "definitions": {
+    "fso": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "size", "narOffset"],
+          "properties": {
+            "type": {
+              "const": "regular",
+              "description": "A file"
+            },
+            "executable": {
+              "type": "boolean",
+              "description": "Whether the file has executable bits set",
+              "default": false
+            },
+            "size": {
+              "type": "integer",
+              "description": "Size of the file in bytes",
+              "minimum": 0
+            },
+            "narOffset": {
+              "type": "integer",
+              "description": "Offset of the first byte of the file's content relative to the beginning of the NAR file",
+              "minimum": 0
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "entries"],
+          "properties": {
+            "type": {
+              "const": "directory",
+              "description": "A directory"
+            },
+            "entries": {
+              "type": "object",
+              "description": "Contents of the directory",
+              "propertyNames": {"minLength": 1},
+              "additionalProperties": {
+                "$ref": "#/definitions/fso"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "target"],
+          "properties": {
+            "type": {
+              "const": "symlink",
+              "description": "A symbolic link"
+            },
+            "target": {
+              "type": "string",
+              "description": "The link's destination"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "zb realization document",
+  "type": "object",
+  "required": ["derivationHash", "realizations"],
+  "properties": {
+    "derivationHash": {
+      "$ref": "#/definitions/hash",
+      "description": "The hash of the derivation's equivalence class"
+    },
+    "realizations": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/definitions/outputName",
+        "description": "Derivation output name"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {"$ref": "#/definitions/realization"}
+      }
+    }
+  },
+  "definitions": {
+    "realization": {
+      "type": "object",
+      "required": ["outputPath", "referenceClasses"],
+      "properties": {
+        "outputPath": {
+          "$ref": "#/definitions/path",
+          "description": "The absolute store path of the realized output for the given name"
+        },
+        "referenceClasses": {"$ref": "#/definitions/referenceClasses"},
+        "signatures": {
+          "type": "array",
+          "description": "Set of signatures",
+          "default": [],
+          "items": {"$ref": "#/definitions/signature"}
+        }
+      }
+    },
+    "referenceClasses": {
+      "type": "array",
+      "description": "A set of other realization outputs referenced by this store object",
+      "default": [],
+      "items": {"$ref": "#/definitions/referenceClass"}
+    },
+    "referenceClass": {
+      "type": "object",
+      "required": ["path", "realization"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/definitions/path",
+          "description": "The absolute path of the referenced store object"
+        },
+        "realization": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "required": ["derivationHash", "outputName"],
+              "additionalProperties": false,
+              "properties": {
+                "derivationHash": {
+                  "$ref": "#/definitions/hash",
+                  "description": "The hash of the referenced derivation equivalence class"
+                },
+                "outputName": {
+                  "$ref": "#/definitions/outputName",
+                  "description": "The name of the derivation output"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "outputName": {
+      "type": "string",
+      "minLength": 1,
+      "examples": ["out"]
+    },
+    "hash": {
+      "type": "object",
+      "required": ["algorithm", "digest"],
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "description": "Hash algorithm",
+          "default": "sha256",
+          "enum": ["md5", "sha1", "sha256", "sha512"]
+        },
+        "digest": {
+          "$ref": "#/definitions/base64",
+          "description": "Hash data (Base-64 encoded)"
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "required": ["format", "publicKey", "signature"],
+      "properties": {
+        "format": {
+          "const": "ed25519",
+          "description": "Signature format (more formats may be added over time)"
+        },
+        "publicKey": {
+          "$ref": "#/definitions/base64",
+          "description": "Public key (Base-64 encoded)"
+        },
+        "signature": {
+          "$ref": "#/definitions/base64",
+          "description": "Signature data (Base-64 encoded)"
+        }
+      }
+    },
+    "realizationForSignature": {
+      "title": "Signature realization object",
+      "description": "An object serialized in JCS for computing signatures",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["derivationHash", "outputName", "outputPath", "referenceClasses"],
+      "properties": {
+        "derivationHash": {
+          "$ref": "#/definitions/hash",
+          "description": "The hash of the derivation's equivalence class"
+        },
+        "outputName": {
+          "$ref": "#/definitions/outputName",
+          "description": "Derivation output name"
+        },
+        "outputPath": {
+          "$ref": "#/definitions/path",
+          "description": "The absolute store path of the realized output for the given name"
+        },
+        "referenceClasses": {
+          "$ref": "#/definitions/referenceClasses",
+          "$comment": "The reference classes MUST be sorted by path, then by realization/derivationHash/algorithm, then by realization/derivationHash/digest, then by realization/outputName."
+        }
+      }
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base64": {
+      "type": "string",
+      "pattern": "^([a-zA-Z0-9+/]{4})*[a-zA-Z0-9+/]{2}([a-zA-Z0-9+/=]=|[a-zA-Z0-9+/]{2})$"
+    }
+  }
+}
