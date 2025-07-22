@@ -26,6 +26,7 @@ Syntax is defined in Augmented Backus-Naur Form as described in [RFC 5234][] and
   seealso: .drv file; derivation
 ```
 
+(drv-format)=
 ## `.drv` format
 
 The `.drv` format uses a subset of the Textual [ATerm][] Format.
