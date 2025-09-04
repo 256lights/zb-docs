@@ -87,6 +87,7 @@ The reference classes in the object **MUST** be sorted by `path`,
 then by `realization/derivationHash/algorithm`,
 then by `realization/derivationHash/digest`,
 then by `realization/outputName`.
+Reference classes with `"realization": null` are ordered before those with a non-`null` realization.
 
 [Ed25519 signature algorithm]: https://ed25519.cr.yp.to/
 [RFC 8785]: https://datatracker.ietf.org/doc/html/rfc8785

@@ -135,7 +135,7 @@
         },
         "referenceClasses": {
           "$ref": "#/definitions/referenceClasses",
-          "$comment": "The reference classes MUST be sorted by path, then by realization/derivationHash/algorithm, then by realization/derivationHash/digest, then by realization/outputName."
+          "$comment": "The reference classes MUST be sorted by path, then by realization (nulls first), then by realization/derivationHash/algorithm, then by realization/derivationHash/digest, then by realization/outputName."
         }
       }
     },
