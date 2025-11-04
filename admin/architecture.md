@@ -21,7 +21,7 @@ By default, it expects a store server running on the local machine on a Unix dom
 
 ## Environment
 
-```{envvar} ZB_STORE_DIR
+:::{envvar} ZB_STORE_DIR
 
 Absolute path to the store directory.
 
@@ -29,13 +29,20 @@ Defaults to:
 
 - `/opt/zb/store` on Linux and macOS
 - `C:\zb\store` on Windows
-```
 
-```{envvar} ZB_STORE_SOCKET
+Can also be set with the {confval}`storeDirectory` configuration setting.
+
+:::
+
+:::{envvar} ZB_STORE_SOCKET
+
 Path of the store server Unix socket to use or,
 in the case of `zb serve`, to create.
 The default is:
 
 - `/opt/zb/var/zb/server.sock` on Linux and macOS
 - `C:\zb\var\zb\server.sock` on Windows
-```
+
+Can also be set with the {confval}`storeSocket` configuration setting.
+
+:::

@@ -67,6 +67,7 @@ drv-name = *(ALPHA / DIGIT / "+" / "-" / "." / "_" / "=")
 
 See the [derivation specification](project:#drv-format) for the `drv-file` rule.
 
+(realization-signatures)=
 ## Signatures
 
 Each realization **SHOULD** include one or more signatures,
