@@ -87,6 +87,7 @@ comparison
 Language Reference <lua/index>
 derivations
 binary-cache/index
+configuration
 paths
 glossary
 genindex
