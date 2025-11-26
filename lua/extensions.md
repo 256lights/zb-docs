@@ -263,6 +263,27 @@ Creates a non-executable file in the store.
 
 :::
 
+:::{function} lazy(f, [t])
+
+Returns a "lazy" table: one whose values are computed as its keys are accessed.
+A lazy table's keys can only be booleans, numbers, or strings.
+All values will be "frozen" before being stored:
+any changes to the values will raise an error.
+
+:param function f:
+  The function to call when a key not present in the table is accessed.
+  `f` will receive the lazy table and the key as arguments.
+  The results of `f` will be adjusted to one value,
+  which will be the value for the key.
+
+:param table t: An optional table whose fields will be copied into the lazy table.
+
+:returns: The new lazy table object
+
+:rtype: userdata
+
+:::
+
 :::{function} storePath(path)
 
 Adds a dependency on an existing store path.
