@@ -1,3 +1,7 @@
+```{eval-rst}
+.. index:: configuration file
+```
+
 # Configuration Reference
 
 When running the zb command-line interface,
@@ -13,6 +17,10 @@ This is a strict superset of JSON that permits:
 - C++ style `/* block comments */` and `// line comments`
 
 [JWCC]: https://nigeltao.github.io/blog/2021/json-with-commas-comments.html
+
+```{eval-rst}
+.. index:: configuration file; location
+```
 
 ## Location
 
@@ -135,3 +143,47 @@ then any previous build result can be reused
 unless the `--clean` command-line option is passed.
 
 :::
+
+:::{confval} server
+:type: object
+:default: `{}`
+
+See [Server Configuration](admin/configuration.md).
+
+```{eval-rst}
+.. index:: single: configuration value; store locator
+```
+
+(store-locator)=
+## Store locator
+
+A store locator is a JSON object that specifies how to access a store.
+The JSON object's properties are interpreted based on the value of its `type` property,
+which can be one of the following strings:
+
+`null`
+: Represents an empty store.
+  Same as using a JSON `null` instead of the JSON object.
+  No additional properties.
+
+`http`
+: A store using the [Binary Cache protocol](binary-cache/index.md).
+
+  `http` store locators have the following properties:
+
+  | Name  | Type   | Required | Description                                                                |
+  | :---- | :----- | :------- | :------------------------------------------------------------------------- |
+  | `url` | string | Yes      | URL to the binary cache's [discovery document](binary-cache/discovery.md). |
+
+  Example:
+
+  ```json
+  {
+    "server": {
+      "download": {
+        "type": "http",
+        "url": "https://www.example.com/zb/cache.json"
+      }
+    }
+  }
+  ```

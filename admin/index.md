@@ -10,4 +10,5 @@ architecture
 storage
 Sandboxing <sandbox>
 ui
+configuration
 ```
