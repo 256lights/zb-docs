@@ -30,6 +30,20 @@ store path
   An absolute filesystem path of a {term}`store object`.
   See the page on [Store Paths](paths.md) for a full reference.
 
+realization
+  A mapping from {term}`derivation` output to a {term}`store path`.
+  See the [Realizations Binary Cache Specification](binary-cache/realizations.md)
+  for the details of the data model.
+
+  Realization can also refer to the process of producing store objects
+  for a set of derivation outputs —
+  the process started by a `zb build` command.
+  While this is sometimes called "building",
+  realization may not involve running builder programs:
+  in the case of a fully cached realization,
+  realization would only obtain store objects from the local store and remote stores
+  based on previous known realizations (mappings).
+
 system value
 system triple
   The `system` value of a {term}`derivation` is used to specify a class of machines that can execute the derivation's {term}`builder <builder program>`.
