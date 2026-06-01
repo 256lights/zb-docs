@@ -8,8 +8,8 @@ Realization resources **SHOULD** use the media type `application/json`.
 Realization documents **MUST** be in [JSON format][JSON]
 and **MUST** conform to the [realization schema](schema/realization.json).
 
-Realization documents **SHOULD** contain one or more realizations.
-A realization is a mapping from derivation output to a store object.
+Realization documents **SHOULD** contain one or more {term}`realizations <realization>`.
+A realization is a mapping from derivation output to a store path.
 Realization documents **SHOULD** have exactly one realization for each output of a derivation,
 but **MAY** have more than one realization for a derivation output.
 
