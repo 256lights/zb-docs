@@ -43,6 +43,8 @@ On Windows systems, zb will find configuration files at (in decreasing order of 
 ## Properties
 
 :::{confval} debug
+:type: boolean
+:default: `false`
 
 Whether to include logging useful for debugging zb itself.
 This is generally very verbose and should only be enabled if you are reporting an issue with zb.
@@ -51,46 +53,47 @@ Equivalent to the `--debug` command-line flag.
 :::
 
 :::{confval} storeDirectory
+:type: string
+:default: >
+: `/opt/zb/store` on Linux and macOS,
+: `C:\zb\store` on Windows
 
 Absolute path to the store directory.
-
-Defaults to:
-
-- `/opt/zb/store` on Linux and macOS
-- `C:\zb\store` on Windows
 
 Will be overridden by {envvar}`ZB_STORE_DIR`.
 
 :::
 
 :::{confval} storeSocket
+:type: string
+:default: >
+: `/opt/zb/var/zb/server.sock` on Linux and macOS,
+: `C:\zb\var\zb\server.sock` on Windows
 
 Absolute path of the store server Unix socket to use or,
 in the case of `zb serve`, to create.
-The default is:
-
-- `/opt/zb/var/zb/server.sock` on Linux and macOS
-- `C:\zb\var\zb\server.sock` on Windows
 
 Will be overridden by {envvar}`ZB_STORE_SOCKET`.
 
 :::
 
 :::{confval} cacheDB
+:type: string
+:default: >
+: `$XDG_CACHE_HOME/zb/cache.db` on Linux and macOS.
+: (`$XDG_CACHE_HOME` defaults to `$HOME/.cache`.)
+: `%LocalAppData%\zb\cache.db` on Windows.
 
 Absolute path to a SQLite database that contains cache data for speeding up zb.
 This database can be deleted at any time: it exists purely to speed up builds.
-The default is:
-
-- `$XDG_CACHE_HOME/zb/cache.db` on Linux and macOS.
-  `$XDG_CACHE_HOME` defaults to `$HOME/.cache`.
-- `%LocalAppData%\zb\cache.db` on Windows
 
 Equivalent to the `--cache` command-line flag.
 
 :::
 
 :::{confval} allowEnvironment
+:type: boolean or array of string
+:default: `false`
 
 The `allowEnvironment` setting configures the behavior of {lua:func}`os.getenv`.
 
@@ -111,18 +114,20 @@ the setting from the file with the highest precedence will be used.
 :::
 
 :::{confval} trustedPublicKeys
+:type: array of objects
+:default: `[]`
 
 The `trustedPublicKeys` setting is an array of public keys that zb will trust for existing build results
 when building a {term}`derivation`.
 `trustedPublicKeys` settings are merged across all configuration files.
-Each public key is a JSON object with the following fields:
+Each public key is a JSON object with the following properties:
 
-| Field       | Type   | Description                               |
+| Name        | Type   | Description                               |
 | :---------- | :----- | :---------------------------------------- |
 | `format`    | string | Only `"ed25519"` is defined at the moment |
 | `publicKey` | string | Base64-encoded public key data            |
 
-For more details on the content of these fields,
+For more details on the content of these properties,
 see [realization signature specification](project:#realization-signatures).
 
 If the configuration files do not include any trusted public keys,
