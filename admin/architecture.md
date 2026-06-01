@@ -1,3 +1,7 @@
+```{eval-rst}
+.. index:: server
+```
+
 # Architecture
 
 zb uses a client/server architecture for all builds.
