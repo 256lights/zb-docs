@@ -73,3 +73,18 @@
     margin-block: calc(var(--spacing) * 2);
   }
 }
+
+.highlight-link {
+  margin-block: calc(var(--spacing) * 2);
+
+  :link, :visited {
+    color: #444;
+    border-color: #999;
+    border-style: dotted;
+    border-bottom-width: 1px;
+  }
+}
+
+.highlighted {
+  background-color: #fbe54e;
+}

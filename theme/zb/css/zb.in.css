@@ -421,6 +421,19 @@
     grid-area: --value([*]);
   }
 
+  @utility gap-* {
+    gap: calc(var(--spacing) * --value(number));
+    gap: --value([length]);
+  }
+  @utility gap-x-* {
+    column-gap: calc(var(--spacing) * --value(number));
+    column-gap: --value([length]);
+  }
+  @utility gap-y-* {
+    row-gap: calc(var(--spacing) * --value(number));
+    row-gap: --value([length]);
+  }
+
   @utility overflow-* {
     overflow: --value("auto", "hidden", "clip", "visible", "scroll");
   }

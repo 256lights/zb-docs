@@ -40,7 +40,11 @@
         {%- endif %}
       {% endblock %}
 
-      <main class="bg-white text-black prose">
+      {# role="main" is load-bearing for search snippets. #}
+      <main
+        class="bg-white text-black prose"
+        role="main"
+      >
         {% block body %} {% endblock %}
       </main>
 

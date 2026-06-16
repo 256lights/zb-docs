@@ -1,29 +1,27 @@
-{# id="searchbox" used by JavaScript. #}
-{%- if pagename != "search" and builder != "singlehtml" %}
-<search
-  id="searchbox"
-  class="my-4 noscript:hidden"
->
+{%- extends "basic/search.html" %}
+
+{%- block searchbox %}
   <form
-    action="{{ pathto('search') }}"
+    action=""
     method="get"
-    class="flex flex-row items-stretch w-full"
+    class="flex flex-row gap-2 w-full max-w-xs"
   >
     <input
       type="text"
       name="q"
+      aria-labelledby="search-documentation"
       class="flex-1 min-w-px p-1 border border-[#ccc]"
+      value=""
       autocomplete="off"
       autocorrect="off"
       autocapitalize="off"
       spellcheck="false"
-      placeholder="Search"
     >
     <input
       type="submit"
+      value="{{ _('search') }}"
       class="bg-[rgb(233,233,237)] p-1 border border-[#ccc]"
-      value="{{ _('Go') }}"
     >
+    <span id="search-progress" class="ps-2"></span>
   </form>
-</search>
-{%- endif %}
+{%- endblock %}
