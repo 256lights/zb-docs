@@ -1,0 +1,16 @@
+[theme]
+inherit = "basic"
+stylesheets = [
+  "zb.css",
+]
+sidebars = [
+  "about.html",
+  "searchfield.html",
+  "navigation.html",
+]
+
+[options]
+github_banner = false
+github_button = true
+github_repo = ""
+github_user = ""

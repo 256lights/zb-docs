@@ -12,9 +12,26 @@ BUILDDIR      = _build
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile
+theme_sources = $(wildcard theme/zb/*.html)
+
+theme/zb/static/zb.css: theme/zb/css/zb.in.css $(wildcard theme/zb/css/*.css) $(theme_sources)
+	woosh -o $@ $(addprefix --source=,$(theme_sources)) $<
+
+css: theme/zb/static/zb.css
+
+html: theme/zb/static/zb.css
+	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+clean:
+	rm -f theme/zb/static/zb.css
+	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+.PHONY: help css clean html Makefile
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+%.css:
+%.html:

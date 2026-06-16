@@ -12,7 +12,10 @@
   },
   "settings": {
     "livePreview.serverRoot": "/_build/html",
-    "livePreview.autoRefreshPreview": "On Changes to Saved Files",
+    "livePreview.autoRefreshPreview": "Never",
     "python.analysis.typeCheckingMode": "standard",
+    "files.associations": {
+      "*.in.css": "tailwindcss",
+    }
   }
 }

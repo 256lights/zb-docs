@@ -1,0 +1,96 @@
+{%- extends "basic/layout.html" %}
+
+{# top+bottom related navs; we also have our own in sidebar #}
+{%- macro rellink_markup() %}
+  <nav class="float-end">
+    <ul>
+      {%- if prev %}
+        <li class="inline">
+          &larr;
+          <a href="{{ prev.link|e }}" title="Previous document">{{ prev.title }}</a>
+        </li>
+      {%- endif %}
+      {%- if next %}
+        <li class="inline">
+          <a href="{{ next.link|e }}" title="Next document">{{ next.title }}</a>
+          &rarr;
+        </li>
+      {%- endif %}
+    </ul>
+  </nav>
+{%- endmacro %}
+
+{%- set theme_show_relbar_top = theme_show_relbar_top or theme_show_relbars %}
+{%- set theme_show_relbar_bottom = theme_show_relbar_bottom or theme_show_relbars %}
+
+{# removed existing top+bottom related nav, and embed in main content #}
+{%- block relbar1 %}{% endblock %}
+{%- block relbar2 %}{% endblock %}
+
+{# Nav should appear before content, not after #}
+{%- block content %}
+  <div class="document w-full grid-sidebar lg:mx-auto lg:mt-[30px] lg:w-[940px]">
+    <div class="documentwrapper bg-white grid-area-[document] lg:float-start lg:w-full">
+      {%- block relbar_top %}
+        {%- if theme_show_relbar_top|tobool %}
+          <div class="related w-full text-sm leading-[30px] print:hidden top border-b mb-[20px]">
+            &nbsp;
+            {{- rellink_markup () }}
+          </div>
+        {%- endif %}
+      {% endblock %}
+
+      <main class="bg-white text-black prose">
+        {% block body %} {% endblock %}
+      </main>
+
+      {%- block relbar_bottom %}
+        {%- if theme_show_relbar_bottom|tobool %}
+          <div class="related w-full text-sm leading-[30px] print:hidden bottom border-t">
+            &nbsp;
+            {{- rellink_markup () }}
+          </div>
+        {%- endif %}
+      {% endblock %}
+    </div>
+    {%- if render_sidebar %}
+      <div
+        class="block grid-area-[sidebar] -mx-[30px] mt-10 -mb-4 px-4 py-2 wrap-break-word text-sm lg:-ms-[100%] lg:me-0 lg:my-0 lg:max-h-full lg:overflow-y-auto"
+        role="navigation"
+        aria-label="Main"
+      >
+        <div class="box-border px-2 py-4 w-full">
+          {%- for sidebartemplate in sidebars %}
+          {%- include sidebartemplate %}
+          {%- endfor %}
+        </div>
+      </div>
+    {%- endif %}
+  </div>
+{%- endblock %}
+
+{%- block footer %}
+  <footer class="hidden w-[940px] mx-auto mt-[20px] mb-[30px] text-sm text-right text-[#888] lg:block">
+    {% if show_copyright %}&#169;{{ copyright }}.{% endif %}
+    {% if show_sphinx %}
+    {% if show_copyright %}|{% endif %}
+    Powered by <a href="https://www.sphinx-doc.org/" class="underline">Sphinx {{ sphinx_version }}</a>
+    {% endif %}
+    {%- if show_source and has_source and sourcename %}
+    {% if show_copyright or show_sphinx %}|{% endif %}
+    <a href="{{ pathto('_sources/' + sourcename, resource=True)|e }}"
+      class="underline"
+        rel="nofollow">{{ _('Page source') }}</a>
+    {%- endif %}
+  </footer>
+
+  {% if theme_github_banner|lower != 'false' %}
+  <a href="https://github.com/{{ theme_github_user }}/{{ theme_github_repo }}" class="hidden lg:inline">
+      {%- if theme_github_banner|lower == 'true' %}
+      <img src="{{ pathto('_static/github-banner.svg', resource=True) }}" alt="Fork me on GitHub" class="absolute top-0 right-0"/>
+      {%- else %}
+      <img src="{{ pathto('_static/' ~ theme_github_banner, resource=True) }}" alt="Fork me on GitHub" class="absolute top-0 right-0"/>
+      {%- endif %}
+  </a>
+  {% endif %}
+{%- endblock %}

@@ -48,25 +48,3 @@
   font-style: italic;
   src: url(GoMono-BoldItalic.woff) format('woff');
 }
-
-div.logo>a {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  max-width: fit-content;
-}
-@media screen and (max-width: 940px) {
-  div.logo {
-    background: white;
-    padding: 0.5rem;
-  }
-  div.logo>a {
-    color: #444;
-  }
-}
-img.logo {
-  display: block;
-  margin-inline-end: 1rem;
-  height: 2rem;
-  width: auto;
-}

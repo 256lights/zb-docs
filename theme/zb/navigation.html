@@ -1,0 +1,12 @@
+<h3 class="text-2xl text-[#444] mb-[5px]">{{ _('Navigation') }}</h3>
+<div class="toctree">
+    {{ toctree(includehidden=True, collapse=True) }}
+</div>
+{% if theme_extra_nav_links %}
+<hr />
+<ul>
+    {% for text, uri in theme_extra_nav_links.items() %}
+    <li><a href="{{ uri }}" class="text-[120%]">{{ text }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}

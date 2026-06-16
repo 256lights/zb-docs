@@ -1,0 +1,25 @@
+{%- if pagename != "search" and builder != "singlehtml" %}
+<search class="my-4 noscript:hidden">
+  <form
+    action="{{ pathto('search') }}"
+    method="get"
+    class="flex flex-row items-stretch w-full"
+  >
+    <input
+      type="text"
+      name="q"
+      class="flex-1 min-w-px p-1 border border-[#ccc]"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      placeholder="Search"
+    >
+    <input
+      type="submit"
+      class="bg-[rgb(233,233,237)] p-1 border border-[#ccc]"
+      value="{{ _('Go') }}"
+    >
+  </form>
+</search>
+{%- endif %}
