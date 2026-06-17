@@ -56,7 +56,7 @@
     list-style: square;
     margin-inline-start: calc(var(--spacing) * 4);
   }
-  :link {
+  :link, :visited {
     color: #444;
     border-color: #999;
     border-style: dotted;

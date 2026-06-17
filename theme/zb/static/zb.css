@@ -264,11 +264,13 @@
 			margin-block: calc(var(--spacing) * 2);
 			margin-inline-start: calc(var(--spacing) * 6);
 		}
-		:link {
-			color: var(--color-link);
+		:link, :visited {
 			border-color: var(--color-link);
 			border-style: dotted;
 			border-bottom-width: 1px;
+		}
+		:link {
+			color: var(--color-link);
 		}
 		:visited {
 			color: var(--color-link-visited);
@@ -324,7 +326,7 @@
 			list-style: square;
 			margin-inline-start: calc(var(--spacing) * 4);
 		}
-		:link {
+		:link, :visited {
 			color: #444;
 			border-color: #999;
 			border-style: dotted;
