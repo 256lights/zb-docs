@@ -24,6 +24,7 @@ extensions = [
     'sphinx_reredirects',
     'zbluadomain',
     'zbtemplatefuncs',
+    'zbtheme',
 ]
 
 myst_enable_extensions = [
@@ -48,7 +49,6 @@ html_theme_options = {
     "github_user": "256lights",
     "github_repo": "zb",
 }
-html_theme_path = ['theme']
 html_additional_pages = {
     'pkg/index': 'gopkg.html.jinja',
     'pkg/zbstore': 'gopkg.html.jinja',

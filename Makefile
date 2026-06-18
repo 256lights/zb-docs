@@ -12,18 +12,18 @@ BUILDDIR      = _build
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-theme_sources = $(wildcard theme/zb/*.html)
+theme_sources = $(wildcard sphinxext/zbtheme/*.html)
 
-theme/zb/static/zb.css: theme/zb/css/zb.in.css $(wildcard theme/zb/css/*.css) $(theme_sources)
+sphinxext/zbtheme/static/zb.css: sphinxext/zbtheme/css/zb.in.css $(wildcard sphinxext/zbtheme/css/*.css) $(theme_sources)
 	woosh -o $@ $(addprefix --source=,$(theme_sources)) $<
 
-css: theme/zb/static/zb.css
+css: sphinxext/zbtheme/static/zb.css
 
-html: theme/zb/static/zb.css
+html: sphinxext/zbtheme/static/zb.css
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:
-	rm -f theme/zb/static/zb.css
+	rm -f sphinxext/zbtheme/static/zb.css
 	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 .PHONY: help css clean html Makefile
