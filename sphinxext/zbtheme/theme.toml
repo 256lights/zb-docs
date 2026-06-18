@@ -9,6 +9,9 @@ sidebars = [
   "navigation.html",
 ]
 
+[theme.pygments_style]
+default = "zbtheme.support.ZB"
+
 [options]
 github_banner = false
 github_button = true
