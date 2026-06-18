@@ -60,6 +60,7 @@
 		--spacing: 0.25rem;
 		--container-2xs: 18rem;
 		--container-xs: 20rem;
+		--container-5xl: 64rem;
 		--text-sm: 0.875rem;
 		--leading-sm: calc(1.25 / 0.875);
 		--text-base: 1rem;
@@ -278,6 +279,10 @@
 		p {
 			margin-block: calc(var(--spacing) * 4);
 		}
+		pre {
+			overflow-x: auto;
+			overflow-y: hidden;
+		}
 	}
 	.headerlink {
 		color: #ddd;
@@ -308,9 +313,9 @@
 	}
 	.grid-sidebar {
 		display: grid;
-		grid-template: "document" "sidebar" / 1fr;
+		grid-template: "document" "sidebar" / minmax(0, 1fr);
 		@media (width >= 940px) {
-			grid-template: "sidebar document" / var(--container-2xs) 1fr;
+			grid-template: "sidebar document" / var(--container-2xs) minmax(0, 1fr);
 		}
 	}
 	.toctree {
@@ -470,6 +475,9 @@
 	.min-w-px {
 		min-width: 1px;
 	}
+	.max-w-5xl {
+		max-width: var(--container-5xl);
+	}
 	.max-w-xs {
 		max-width: var(--container-xs);
 	}
@@ -530,6 +538,9 @@
 	.gap-2 {
 		gap: calc(var(--spacing) * 2);
 	}
+	.gap-4 {
+		gap: calc(var(--spacing) * 4);
+	}
 	.wrap-break-word {
 		overflow-wrap: break-word;
 	}
@@ -550,11 +561,6 @@
 	}
 	.justify-start {
 		justify-content: flex-start;
-	}
-	.lg\:mx-auto {
-		@media (width >= 940px) {
-			margin-inline: auto;
-		}
 	}
 	.lg\:my-0 {
 		@media (width >= 940px) {
@@ -581,24 +587,9 @@
 			color: var(--color-inherit);
 		}
 	}
-	.lg\:w-\[940px\] {
-		@media (width >= 940px) {
-			width: 940px;
-		}
-	}
-	.lg\:w-full {
-		@media (width >= 940px) {
-			width: 100%;
-		}
-	}
 	.lg\:max-h-full {
 		@media (width >= 940px) {
 			max-height: 100%;
-		}
-	}
-	.lg\:float-start {
-		@media (width >= 940px) {
-			float: inline-start;
 		}
 	}
 	.lg\:inline {

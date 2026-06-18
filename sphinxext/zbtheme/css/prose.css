@@ -51,4 +51,8 @@
   p {
     margin-block: calc(var(--spacing) * 4);
   }
+  pre {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
 }

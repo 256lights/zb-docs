@@ -29,8 +29,8 @@
 
 {# Nav should appear before content, not after #}
 {%- block content %}
-  <div class="document w-full grid-sidebar lg:mx-auto lg:mt-[30px] lg:w-[940px]">
-    <div class="documentwrapper bg-white grid-area-[document] lg:float-start lg:w-full">
+  <div class="mx-auto w-full max-w-5xl grid-sidebar gap-4 lg:mt-[30px]">
+    <div class="grid-area-[document] px-4">
       {%- block relbar_top %}
         {%- if theme_show_relbar_top|tobool %}
           <div class="related w-full text-sm leading-[30px] print:hidden top border-b mb-[20px]">

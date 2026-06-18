@@ -36,10 +36,10 @@
 
 .grid-sidebar {
   display: grid;
-  grid-template: "document" "sidebar" / 1fr;
+  grid-template: "document" "sidebar" / minmax(0, 1fr);
 
   @media (width >= 940px) {
-    grid-template: "sidebar document" / var(--container-2xs) 1fr;
+    grid-template: "sidebar document" / var(--container-2xs) minmax(0, 1fr);
   }
 }
 
