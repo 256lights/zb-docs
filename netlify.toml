@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 [build]
-command = 'PATH="$(go env GOPATH)/bin:$PATH" make -j1 install-woosh html'
+command = 'CGO_ENABLED=0 PATH="$(go env GOPATH)/bin:$PATH" make -j1 install-woosh html'
 publish = "_build/html"
 
 [build.environment]
