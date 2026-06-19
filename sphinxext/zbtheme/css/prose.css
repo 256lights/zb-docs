@@ -42,9 +42,11 @@
     border-style: dotted;
     border-bottom-width: 1px;
 
-    &:hover {
-      color: var(--color-amber-900);
-      border-color: var(--color-amber-900);
+    @media (hover: hover) {
+      &:hover {
+        color: var(--color-amber-900);
+        border-color: var(--color-amber-900);
+      }
     }
   }
   :link {
