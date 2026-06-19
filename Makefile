@@ -26,7 +26,10 @@ clean:
 	rm -f sphinxext/zbtheme/static/zb.css
 	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help css clean html Makefile
+install-woosh:
+	go install zombiezen.com/go/woosh/cmd/woosh@7dafeacc239d9379afa062b6e4a0e0bcfefc26c1
+
+.PHONY: help css clean html install-woosh sphinxext/zbtheme/support.py Makefile
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
@@ -35,5 +38,3 @@ clean:
 
 %.css:
 %.html:
-sphinxext/zbtheme/support.py:
-	@true

@@ -2,10 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 [build]
-command = """
-go install zombiezen.com/go/woosh/cmd/woosh@7dafeacc239d9379afa062b6e4a0e0bcfefc26c1 && \
-PATH="$(go env GOPATH)/bin" make html \
-"""
+command = 'PATH="$(go env GOPATH)/bin:$PATH" make -j1 install-woosh html'
 publish = "_build/html"
 
 [build.environment]
