@@ -213,7 +213,7 @@ That directory will be the builder's initial working directory
 and its absolute path will be used as the default value of `ZB_BUILD_TOP` as described above.
 
 A `.drv` file **MAY** include an environment variable called `__buildSystemDeps`.
-zb **SHALL** interpret such an environment variable as a space-separted list of files or directories
+zb **SHALL** interpret such an environment variable as a space-separated list of files or directories
 that **SHALL** be available to the builder when it runs.
 If any files or directories named in `__buildSystemDeps` do not exist
 or zb's security policy does not permit access to the requested file,

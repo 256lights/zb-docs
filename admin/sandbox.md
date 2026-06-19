@@ -6,7 +6,7 @@
 
 On Unix-like systems,
 store servers require elevated permissions to create sandboxes
-and keep {term}`store objects <store object>` unmodifiable by ordinary users.
+and prevent modification of {term}`store objects <store object>` by ordinary users.
 However, {term}`builders <builder program>` are run with limited separate privileges
 to avoid performing sensitive operations during a build.
 Concurrent builds are run with separate UIDs to avoid interference among builders.
