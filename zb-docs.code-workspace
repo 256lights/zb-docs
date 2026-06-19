@@ -8,14 +8,16 @@
     "recommendations": [
       "ms-vscode.live-server",
       "ms-python.vscode-pylance",
+      "elijah-potter.harper",
     ]
   },
   "settings": {
     "livePreview.serverRoot": "/_build/html",
     "livePreview.autoRefreshPreview": "On Changes to Saved Files",
     "python.analysis.typeCheckingMode": "standard",
+    "harper.dialect": "American",
     "files.associations": {
       "*.in.css": "tailwindcss",
-    }
+    },
   }
 }

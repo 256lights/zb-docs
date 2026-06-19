@@ -59,7 +59,7 @@ in the same directory as `hello.c`
 
 Now we can build the program with `zb build`.
 Note that the first time you run `zb build`,
-will take a while,
+will take awhile,
 since it is building the standard library tools from source.
 (Because zb build artifacts can be safely shared among machines,
 there are plans to speed this up.

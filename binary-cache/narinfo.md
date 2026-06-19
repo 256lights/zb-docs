@@ -4,7 +4,7 @@
    binary cache; .narinfo file
 ```
 
-# The `.narinfo` file format
+# The `.narinfo` File Format
 
 Resources with the media type `text/x-nix-narinfo`
 **MUST** conform to the syntax below.

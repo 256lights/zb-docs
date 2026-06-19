@@ -136,7 +136,7 @@ zb also sets a metatable for strings where the `__index` field points to the `st
 
 [Patterns][] behave a little differently in zb's implementation
 in order to avoid pathological runtime performance and clean up some confusing behaviors.
-Patterns do not support backreferences (i.e. `%0` - `%9`) or balances (i.e. `%b`).
+Patterns do not support back references (i.e. `%0` - `%9`) or balances (i.e. `%b`).
 Attempting to use either of these pattern items will raise an error.
 In patterns, character sets with classes in ranges (e.g. `[%a-z]`)
 raise an error instead of silently exhibiting undefined behavior.
@@ -149,7 +149,7 @@ However, ranges using escapes (e.g. ``[%]-`]``) are well-defined in this impleme
 ```{module} table
 ```
 
-All of the symbols in the [`table` library][table manipulation library] are available:
+All the symbols in the [`table` library][table manipulation library] are available:
 
 - [`concat`](https://www.lua.org/manual/5.4/manual.html#pdf-table.concat)
 - [`insert`](https://www.lua.org/manual/5.4/manual.html#pdf-table.insert)
@@ -164,7 +164,7 @@ All of the symbols in the [`table` library][table manipulation library] are avai
 ```{module} utf8
 ```
 
-All of the symbols in the [`utf8` library][UTF-8 library] are available:
+All the symbols in the [`utf8` library][UTF-8 library] are available:
 
 - [`char`](https://www.lua.org/manual/5.4/manual.html#pdf-utf8.char)
 - [`charpattern`](https://www.lua.org/manual/5.4/manual.html#pdf-utf8.charpattern)
