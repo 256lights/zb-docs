@@ -47,18 +47,32 @@ SPDX-License-Identifier: MIT
     border-style: dotted;
     border-bottom-width: 1px;
 
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--color-cyan-200);
+    }
     @media (hover: hover) {
       &:hover {
         color: var(--color-amber-900);
         border-color: var(--color-amber-900);
+
+        @media (prefers-color-scheme: dark) {
+          color: var(--color-amber-200);
+          border-color: var(--color-amber-200);
+        }
       }
     }
   }
   :link {
     color: var(--color-cyan-900);
+    @media (prefers-color-scheme: dark) {
+      color: var(--color-cyan-200);
+    }
   }
   :visited {
     color: var(--color-violet-900);
+    @media (prefers-color-scheme: dark) {
+      color: var(--color-violet-300);
+    }
   }
   p {
     margin-block: calc(var(--spacing) * 4);
@@ -81,6 +95,10 @@ SPDX-License-Identifier: MIT
 
     &.xref, :link &, :visited & {
       font-weight: var(--font-weight-bold);
+    }
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-cyan-950);
+      color: var(--color-neutral-300);
     }
   }
   h1 code, h1 tt,
@@ -186,6 +204,10 @@ SPDX-License-Identifier: MIT
     border-width: 1px;
     border-color: var(--color-neutral-300);
 
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-neutral-800);
+      border-color: var(--color-neutral-700);
+    }
     .admonition-title {
       font-size: var(--text-2xl);
       line-height: var(--leading-2xl);

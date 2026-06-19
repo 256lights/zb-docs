@@ -1,5 +1,9 @@
 {%- extends "basic/layout.html" %}
 
+{%- block extrahead %}
+  <meta name="color-scheme" content="light dark">
+{%- endblock %}
+
 {# top+bottom related navs; we also have our own in sidebar #}
 {%- macro rellink_markup() %}
   <nav class="float-end">
@@ -27,6 +31,8 @@
 {%- block relbar1 %}{% endblock %}
 {%- block relbar2 %}{% endblock %}
 
+{%- block body_tag %}<body class="bg-white text-black dark:bg-neutral-900 dark:text-neutral-100">{% endblock %}
+
 {# Nav should appear before content, not after #}
 {%- block content %}
   <div class="mx-auto w-full max-w-5xl grid-sidebar gap-4 lg:mt-[30px]">
@@ -42,7 +48,7 @@
 
       {# role="main" is load-bearing for search snippets. #}
       <main
-        class="bg-white text-black prose"
+        class="prose"
         role="main"
       >
         {% block body %} {% endblock %}
