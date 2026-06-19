@@ -16,7 +16,7 @@ Examples include:
 :heading-level: 2
 :::
 
-The syntax of a hash string in Augmented Backus-Naur Form (as described in [RFC 5234][] and  [RFC 7405][])
+The syntax of a hash string in Augmented Backus-Naur Form (as described in [RFC 5234][] and [RFC 7405][])
 is as follows:
 
 ```abnf

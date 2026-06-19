@@ -5,7 +5,7 @@
    binary cache; NAR listing
 ```
 
-# NAR listings
+# NAR Listings
 
 NAR listing resources describe the structure of a NAR file.
 NAR listing resources **SHOULD** use the media type `application/json`.

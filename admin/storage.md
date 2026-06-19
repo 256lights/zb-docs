@@ -16,7 +16,7 @@ zb also stores build logs alongside its database.
 These logs are periodically deleted to reclaim space.
 The exact layout of this directory is considered internal
 and may change from release to release,
-but generally, it will contain plain text files with the combined stdout and stderr
+but generally, it will contain plain text files with the combined standard output and standard error
 of builders run.
 
 [SQLite]: https://www.sqlite.org/

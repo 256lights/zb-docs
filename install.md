@@ -21,7 +21,7 @@ To install zb:
 On `aarch64-apple-macos`, the zb standard library requires additional setup.
 See the [standard library README](https://github.com/256lights/zb-stdlib/blob/main/README.md) for details.
 
-## What the installer does
+## What the Installer Does
 
 The installer does the following in order:
 
