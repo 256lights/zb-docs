@@ -4,7 +4,7 @@
 [build]
 command = """
 go install zombiezen.com/go/woosh/cmd/woosh@7dafeacc239d9379afa062b6e4a0e0bcfefc26c1 && \
-make html \
+PATH="$(go env GOPATH)/bin" make html \
 """
 publish = "_build/html"
 
