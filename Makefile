@@ -12,7 +12,7 @@ BUILDDIR      = _build
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-theme_sources = $(wildcard sphinxext/zbtheme/*.html)
+theme_sources = $(wildcard sphinxext/zbtheme/*.html) sphinxext/zbtheme/support.py
 
 sphinxext/zbtheme/static/zb.css: sphinxext/zbtheme/css/zb.in.css $(wildcard sphinxext/zbtheme/css/*.css) $(theme_sources)
 	woosh -o $@ $(addprefix --source=,$(theme_sources)) $<
@@ -35,3 +35,5 @@ clean:
 
 %.css:
 %.html:
+sphinxext/zbtheme/support.py:
+	@true

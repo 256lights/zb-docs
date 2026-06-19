@@ -1,11 +1,11 @@
 .headerlink {
-  color: #ddd;
+  color: var(--color-neutral-300);
   padding-inline: calc(var(--spacing) * 1);
   visibility: hidden;
 
   @media (hover: hover) {
     &:hover {
-      background-color: #eaeaea;
+      background-color: var(--color-neutral-200);
     }
     h1:hover &,
     h2:hover &,
@@ -39,8 +39,8 @@
     margin-inline-start: calc(var(--spacing) * 4);
   }
   :link, :visited {
-    color: #444;
-    border-color: #999;
+    color: var(--color-neutral-700);
+    border-color: var(--color-neutral-400);
     border-style: dotted;
     border-bottom-width: 1px;
 
@@ -56,7 +56,7 @@
   p {
     font-size: var(--text-sm);
     line-height: var(--leading-sm);
-    color: #555;
+    color: var(--color-neutral-600);
     margin-block: calc(var(--spacing) * 2);
   }
 }
@@ -64,18 +64,18 @@
   margin-block: calc(var(--spacing) * 2);
 
   :link, :visited {
-    color: #444;
-    border-color: #999;
+    color: var(--color-neutral-700);
+    border-color: var(--color-neutral-400);
     border-style: dotted;
     border-bottom-width: 1px;
   }
 }
 .highlighted {
-  background-color: #fbe54e;
+  background-color: var(--color-amber-400);
 }
 #search-results {
   .context {
-    color: #888;
+    color: var(--color-neutral-500);
     margin-top: calc(var(--spacing) * 0.5);
     margin-bottom: calc(var(--spacing) * 6);
   }
