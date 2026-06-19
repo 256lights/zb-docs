@@ -2,8 +2,9 @@
 # SPDX-License-Identifier: MIT
 
 [build]
-command = "make html"
+command = 'make install-woosh && PATH="$(go env GOBIN):$PATH" make html'
 publish = "_build/html"
 
 [build.environment]
-PYTHON_VERSION = "3.12.10"
+GO_VERSION = "1.26.3"
+PYTHON_VERSION = "3.13.13"

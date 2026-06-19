@@ -1,0 +1,10 @@
+/*
+Copyright 2026 The zb Authors
+SPDX-License-Identifier: MIT
+*/
+
+@theme {
+  --font-sans: "Titillium Web", sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-mono: "Go Mono", monospace;
+}

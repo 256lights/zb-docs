@@ -14,5 +14,8 @@
     "livePreview.serverRoot": "/_build/html",
     "livePreview.autoRefreshPreview": "On Changes to Saved Files",
     "python.analysis.typeCheckingMode": "standard",
+    "files.associations": {
+      "*.in.css": "tailwindcss",
+    }
   }
 }

@@ -14,13 +14,18 @@
           ps.sphinx
           ps.sphinx-reredirects
         ]);
+
+        woosh = pkgs.callPackage ./woosh.nix {};
       in
       {
+        packages.woosh = woosh;
+
         devShells.default = pkgs.mkShell {
           packages = [
             python
             pkgs.netlify-cli
             pkgs.texliveFull
+            woosh
           ];
         };
       }
