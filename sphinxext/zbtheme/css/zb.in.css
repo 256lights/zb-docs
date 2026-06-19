@@ -1,5 +1,11 @@
+/*
+Copyright 2026 The zb Authors
+SPDX-License-Identifier: MIT
+*/
+
 @layer theme, base, components, utilities;
 
+@import './default-theme.in.css' layer(theme);
 @import './fonts.css' layer(theme);
 @import './theme.in.css' layer(theme);
 @import './preflight.css' layer(base);
