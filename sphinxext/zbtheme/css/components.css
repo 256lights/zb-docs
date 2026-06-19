@@ -7,23 +7,20 @@
     &:hover {
       background-color: #eaeaea;
     }
+    h1:hover &,
+    h2:hover &,
+    h3:hover &,
+    h4:hover &,
+    h5:hover &,
+    h6:hover &,
+    dt:hover &,
+    caption:hover &,
+    .caption:hover &,
+    .code-block-caption:hover & {
+      visibility: visible;
+    }
   }
 }
-@media (hover: hover) {
-  h1:hover .headerlink,
-  h2:hover .headerlink,
-  h3:hover .headerlink,
-  h4:hover .headerlink,
-  h5:hover .headerlink,
-  h6:hover .headerlink,
-  dt:hover .headerlink,
-  caption:hover .headerlink,
-  .caption:hover .headerlink,
-  .code-block-caption:hover .headerlink {
-    visibility: visible;
-  }
-}
-
 .grid-sidebar {
   display: grid;
   grid-template: "document" "sidebar" / minmax(0, 1fr);
@@ -32,7 +29,6 @@
     grid-template: "sidebar document" / var(--container-2xs) minmax(0, 1fr);
   }
 }
-
 .toctree {
   .toctree-l2 {
     font-size: var(--text-sm);
@@ -64,7 +60,6 @@
     margin-block: calc(var(--spacing) * 2);
   }
 }
-
 .highlight-link {
   margin-block: calc(var(--spacing) * 2);
 
@@ -75,7 +70,6 @@
     border-bottom-width: 1px;
   }
 }
-
 .highlighted {
   background-color: #fbe54e;
 }
