@@ -55,6 +55,7 @@
 		--color-transparent: transparent;
 		--color-link: #004b6b;
 		--color-link-visited: #551a8b;
+		--color-link-hover: #6d4100;
 		--color-black: #000;
 		--color-white: #fff;
 		--spacing: 0.25rem;
@@ -65,6 +66,8 @@
 		--leading-sm: calc(1.25 / 0.875);
 		--text-base: 1rem;
 		--leading-base: calc(1.5 / 1);
+		--text-lg: 1.125rem;
+		--leading-lg: calc(1.75 / 1.125);
 		--text-xl: 1.25rem;
 		--leading-xl: calc(1.75 / 1.25);
 		--text-2xl: 1.5rem;
@@ -233,7 +236,7 @@
 		h1 {
 			font-size: var(--text-4xl);
 			line-height: var(--leading-4xl);
-			margin-bottom: calc(var(--spacing) * 2);
+			margin-bottom: calc(var(--spacing) * 3);
 		}
 		h2, h3, h4, h5, h6 {
 			margin-top: calc(var(--spacing) * 6);
@@ -269,6 +272,10 @@
 			border-color: var(--color-link);
 			border-style: dotted;
 			border-bottom-width: 1px;
+			&:hover {
+				color: var(--color-link-hover);
+				border-color: var(--color-link-hover);
+			}
 		}
 		:link {
 			color: var(--color-link);
@@ -280,8 +287,121 @@
 			margin-block: calc(var(--spacing) * 4);
 		}
 		pre {
+			margin-block: calc(var(--spacing) * 4);
+			padding: calc(var(--spacing) * 2) calc(var(--spacing) * 6);
 			overflow-x: auto;
 			overflow-y: hidden;
+		}
+		blockquote {
+			margin-inline-start: calc(var(--spacing) * 8);
+		}
+		ul.simple p, ol.simple p {
+			margin-block: 0;
+		}
+		code, tt {
+			background-color: #ecf0f3;
+			color: #222;
+			&.xref, :link &, :visited & {
+				font-weight: var(--font-weight-bold);
+			}
+		}
+		h1 code, h1 tt, h2 code, h2 tt, h3 code, h3 tt, h4 code, h4 tt, h5 code, h5 tt, h6 code, h6 tt {
+			background-color: transparent;
+			color: unset;
+		}
+		table {
+			border-width: 1px;
+			border-color: #888;
+			margin-block: calc(var(--spacing) * 2);
+			border-collapse: collapse;
+		}
+		th, td {
+			border-width: 1px;
+			border-color: #888;
+			padding: calc(var(--spacing) * 1) calc(var(--spacing) * 3);
+			&>:first-child {
+				margin-top: 0;
+			}
+			&>:last-child {
+				margin-bottom: 0;
+			}
+		}
+		table.indextable {
+			border-width: 0;
+			th, td {
+				border-width: 0;
+				&>ul {
+					padding-inline-start: 0;
+				}
+			}
+			ul {
+				list-style: none;
+				margin-block: 0;
+			}
+		}
+		dl {
+			margin-bottom: calc(var(--spacing) * 3);
+		}
+		dd {
+			margin-top: calc(var(--spacing) * 1);
+			margin-bottom: calc(var(--spacing) * 2);
+			margin-inline-start: calc(var(--spacing) * 8);
+			&>:first-child {
+				margin-top: 0;
+			}
+			&>:last-child {
+				margin-bottom: 0;
+			}
+		}
+		dl.field-list {
+			display: grid;
+			grid-template-columns: fit-content(30%) auto;
+			&>dt {
+				font-weight: var(--font-weight-bold);
+				word-break: break-word;
+				padding-inline-start: calc(var(--spacing) * 2);
+				padding-inline-end: calc(var(--spacing) * 1);
+			}
+			&>dd {
+				margin-block: 0;
+				margin-inline-start: calc(var(--spacing) * 2);
+			}
+			ul {
+				margin: 0;
+				padding-inline-start: calc(var(--spacing) * 4);
+			}
+		}
+		dl.glossary {
+			&>dt {
+				font-weight: var(--font-weight-bold);
+				font-size: var(--text-lg);
+				line-height: var(--leading-lg);
+			}
+		}
+		.sig {
+			font-family: var(--font-mono);
+		}
+		.sig-name {
+			font-size: var(--text-lg);
+			line-height: var(--leading-lg);
+			font-weight: var(--font-weight-bold);
+		}
+		.sig-paren, .optional {
+			font-size: var(--text-xl);
+			line-height: var(--leading-xl);
+		}
+		.admonition {
+			background-color: #eee;
+			margin-block: calc(var(--spacing) * 4);
+			padding-block: calc(var(--spacing) * 2);
+			padding-inline: calc(var(--spacing) * 6);
+			border-width: 1px;
+			border-color: #ccc;
+			.admonition-title {
+				font-size: var(--text-2xl);
+				line-height: var(--leading-2xl);
+				margin-bottom: calc(var(--spacing) * 2);
+			}
 		}
 	}
 	.headerlink {
@@ -295,20 +415,8 @@
 		}
 	}
 	@media (hover: hover) {
-		h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .headerlink, h5:hover .headerlink, h6:hover .headerlink {
+		h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .headerlink, h5:hover .headerlink, h6:hover .headerlink, dt:hover .headerlink, caption:hover .headerlink, .caption:hover .headerlink, .code-block-caption:hover .headerlink {
 			visibility: visible;
-		}
-	}
-	.admonition {
-		margin-block: calc(var(--spacing) * 4);
-		padding-block: calc(var(--spacing) * 2);
-		padding-inline: calc(var(--spacing) * 6);
-		border-width: 1px;
-		border-color: #ccc;
-		.admonition-title {
-			font-size: var(--text-2xl);
-			line-height: var(--leading-2xl);
-			margin-bottom: calc(var(--spacing) * 2);
 		}
 	}
 	.grid-sidebar {
