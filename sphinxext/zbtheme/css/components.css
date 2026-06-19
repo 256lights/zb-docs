@@ -73,3 +73,13 @@
 .highlighted {
   background-color: #fbe54e;
 }
+#search-results {
+  .context {
+    color: #888;
+    margin-top: calc(var(--spacing) * 0.5);
+    margin-bottom: calc(var(--spacing) * 6);
+  }
+  :link, :visited {
+    font-weight: var(--font-weight-bold);
+  }
+}

@@ -332,6 +332,24 @@
     border-style: --value("solid", "dashed", "dotted", "double", "hidden", "none");
     border-color: --value(--color-*, [color]);
   }
+  @utility border-x {
+    border-inline-width: 1px;
+  }
+  @utility border-x-* {
+    border-inline-width: calc(--value(number) * 1px);
+    border-inline-width: --value([length]);
+    border-inline-style: --value("solid", "dashed", "dotted", "double", "hidden", "none");
+    border-inline-color: --value(--color-*, [color]);
+  }
+  @utility border-y {
+    border-block-width: 1px;
+  }
+  @utility border-y-* {
+    border-block-width: calc(--value(number) * 1px);
+    border-block-width: --value([length]);
+    border-block-style: --value("solid", "dashed", "dotted", "double", "hidden", "none");
+    border-block-color: --value(--color-*, [color]);
+  }
   @utility border-t {
     border-top-width: 1px;
   }
@@ -349,6 +367,58 @@
     border-bottom-width: --value([length]);
     border-bottom-style: --value("solid", "dashed", "dotted", "double", "hidden", "none");
     border-bottom-color: --value(--color-*, [color]);
+  }
+  @utility border-s {
+    border-inline-start-width: 1px;
+  }
+  @utility border-s-* {
+    border-inline-start-width: calc(--value(number) * 1px);
+    border-inline-start-width: --value([length]);
+    border-inline-start-style: --value("solid", "dashed", "dotted", "double", "hidden", "none");
+    border-inline-start-color: --value(--color-*, [color]);
+  }
+  @utility border-e {
+    border-inline-end-width: 1px;
+  }
+  @utility border-e-* {
+    border-inline-end-width: calc(--value(number) * 1px);
+    border-inline-end-width: --value([length]);
+    border-inline-end-style: --value("solid", "dashed", "dotted", "double", "hidden", "none");
+    border-inline-end-color: --value(--color-*, [color]);
+  }
+
+  @utility rounded-* {
+    border-radius: --value(--radius-*, [length]);
+  }
+  @utility rounded-none {
+    border-radius: 0;
+  }
+  @utility rounded-full {
+    border-radius: calc(infinity * 1px);
+  }
+  @utility rounded-s-* {
+    border-start-start-radius: --value(--radius-*, [length]);
+    border-end-start-radius: --value(--radius-*, [length]);
+  }
+  @utility rounded-s-none {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+  @utility rounded-s-full {
+    border-start-start-radius: calc(infinity * 1px);
+    border-end-start-radius: calc(infinity * 1px);
+  }
+  @utility rounded-e-* {
+    border-start-end-radius: --value(--radius-*, [length]);
+    border-end-end-radius: --value(--radius-*, [length]);
+  }
+  @utility rounded-e-none {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+  @utility rounded-e-full {
+    border-start-end-radius: calc(infinity * 1px);
+    border-end-end-radius: calc(infinity * 1px);
   }
 
   @utility hidden {

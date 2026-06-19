@@ -78,6 +78,15 @@
   --font-weight-extrabold: 800;
   --font-weight-black: 900;
 
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
+
   --default-font-family: var(--font-sans, initial);
   --default-font-feature-settings: var(--font-sans--font-feature-settings, initial);
   --default-font-variation-settings: var(--font-sans--font-variation-settings, initial);
