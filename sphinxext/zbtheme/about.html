@@ -1,0 +1,30 @@
+<h1 class="bg-white text-3xl font-bold lg:bg-transparent">
+  <a
+    href="{{ pathto(master_doc) }}"
+    class="flex items-center justify-start max-w-fit p-2 text-neutral-700 border-b border-dotted border-neutral-400 lg:text-inherit"
+  >
+    <img
+        src="{{ pathto('_static/LogoRainbow.svg', 1) }}"
+        width="181"
+        height="48"
+        alt="256 Lights"
+        class="block me-4 w-auto h-8"
+    />
+    <span class="block -mt-[10px] text-center">{{ project }}</span>
+  </a>
+</h1>
+
+{% if theme_description %}
+<p class="my-2">{{ theme_description }}</p>
+{% endif %}
+
+{% if theme_github_user and theme_github_repo %}
+{% if theme_github_button|lower == 'true' %}
+<iframe
+  src="https://ghbtns.com/github-btn.html?user={{ theme_github_user }}&repo={{ theme_github_repo }}&type=star&count=true&size=large&v=2"
+  allowtransparency="true"
+  frameborder="0"
+  scrolling="0"
+  class="w-full h-[35px] my-2"></iframe>
+{% endif %}
+{% endif %}

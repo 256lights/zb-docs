@@ -24,6 +24,7 @@ extensions = [
     'sphinx_reredirects',
     'zbluadomain',
     'zbtemplatefuncs',
+    'zbtheme',
 ]
 
 myst_enable_extensions = [
@@ -41,18 +42,12 @@ primary_domain = 'lua'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_baseurl = 'https://zb.256lights.llc/'
-html_theme = 'alabaster'
+html_theme = 'zb'
 html_theme_options = {
-    "logo": "LogoRainbow.svg",
-    "logo_name": True,
-    "font_family": '"Titillium Web", sans-serif',
-    "code_font_family": '"Go Mono", monospace',
     "github_button": True,
-    "github_type": "star",
     "github_user": "256lights",
     "github_repo": "zb",
 }
-html_static_path = ['_static']
 html_additional_pages = {
     'pkg/index': 'gopkg.html.jinja',
     'pkg/zbstore': 'gopkg.html.jinja',

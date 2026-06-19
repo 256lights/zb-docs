@@ -1,0 +1,27 @@
+{%- extends "basic/search.html" %}
+
+{%- block searchbox %}
+  <form
+    action=""
+    method="get"
+    class="flex flex-row gap-2 w-full max-w-xs"
+  >
+    <input
+      type="search"
+      name="q"
+      aria-labelledby="search-documentation"
+      class="flex-1 min-w-px px-4 py-1 border border-neutral-300 rounded-full"
+      value=""
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    >
+    <input
+      type="submit"
+      value="{{ _('search') }}"
+      class="bg-neutral-200 px-2 py-1 border border-neutral-300 rounded-sm"
+    >
+    <span id="search-progress" class="ps-2"></span>
+  </form>
+{%- endblock %}
