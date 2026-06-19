@@ -27,11 +27,7 @@ clean:
 	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 install-woosh:
-	@echo "GOBIN=$$(go env GOBIN)"
-	@echo "GOPATH=$$(go env GOPATH)"
 	go install zombiezen.com/go/woosh/cmd/woosh@7dafeacc239d9379afa062b6e4a0e0bcfefc26c1
-	ls -l "$$(go env GOBIN)"
-	ls -l "$$(go env GOPATH)"
 
 .PHONY: help css clean html install-woosh sphinxext/zbtheme/support.py Makefile
 
