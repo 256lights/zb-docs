@@ -2,8 +2,12 @@
 # SPDX-License-Identifier: MIT
 
 [build]
-command = "make html"
+command = """
+go install zombiezen.com/go/woosh/cmd/woosh@7dafeacc239d9379afa062b6e4a0e0bcfefc26c1 && \
+make html \
+"""
 publish = "_build/html"
 
 [build.environment]
-PYTHON_VERSION = "3.12.10"
+GO_VERSION = "1.26.3"
+PYTHON_VERSION = "3.13.13"

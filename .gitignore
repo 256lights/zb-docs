@@ -1,4 +1,5 @@
 /_build/
+/sphinxext/zbtheme/static/zb.css
 
 # Python
 *.pyc
