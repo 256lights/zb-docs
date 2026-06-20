@@ -32,3 +32,24 @@ class ZB(Style):
         # bg-lime-50 text-lime-950
         Generic.Inserted: "bg:var(--color-lime-50) var(--color-lime-950)",
     }
+
+
+class ZBDark(Style):
+    background_color = "var(--color-amber-950)"  # bg-amber-950
+
+    styles = {
+        Comment: "italic var(--color-amber-300)",     # text-amber-300
+        Keyword: "bold var(--color-cyan-300)",        # text-cyan-300
+        Name.Builtin: "bold var(--color-cyan-300)",   # text-cyan-300
+        Name.Tag: "bold var(--color-cyan-300)",       # text-cyan-300
+        Number: "var(--color-red-300)",               # text-red-300
+        Operator.Word: "bold var(--color-cyan-300)",  # text-cyan-300
+        Punctuation: "bold",
+        String: "var(--color-lime-400)",              # text-lime-400
+
+        # bg-red-800 text-red-50
+        Generic.Deleted: "bg:var(--color-red-800) var(--color-red-50)",
+        # bg-lime-800 text-lime-50
+        Generic.Inserted: "bg:var(--color-lime-800) var(--color-lime-50)",
+    }
+

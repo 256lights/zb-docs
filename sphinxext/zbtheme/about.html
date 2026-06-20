@@ -1,16 +1,25 @@
-<h1 class="bg-white text-3xl font-bold lg:bg-transparent">
+<h1 class="text-3xl font-bold">
   <a
     href="{{ pathto(master_doc) }}"
     class="flex items-center justify-start max-w-fit p-2 text-neutral-700 border-b border-dotted border-neutral-400 lg:text-inherit"
   >
-    <img
-        src="{{ pathto('_static/LogoRainbow.svg', 1) }}"
+    <picture>
+      <source
+        srcset="{{ pathto('_static/LogoRainbow-Inverted.svg', 1) }}"
+        media="(prefers-color-scheme: dark)"
         width="181"
         height="48"
-        alt="256 Lights"
-        class="block me-4 w-auto h-8"
-    />
-    <span class="block -mt-[10px] text-center">{{ project }}</span>
+        type="image/svg+xml"
+      >
+      <img
+          src="{{ pathto('_static/LogoRainbow.svg', 1) }}"
+          width="181"
+          height="48"
+          alt="256 Lights"
+          class="block me-4 w-auto h-8"
+      >
+    </picture>
+    <span class="block -mt-[10px] text-center dark:text-neutral-300">{{ project }}</span>
   </a>
 </h1>
 

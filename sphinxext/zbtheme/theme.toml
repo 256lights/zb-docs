@@ -11,6 +11,7 @@ sidebars = [
 
 [theme.pygments_style]
 default = "zbtheme.support.ZB"
+dark = "zbtheme.support.ZBDark"
 
 [options]
 github_banner = false
