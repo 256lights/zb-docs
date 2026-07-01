@@ -71,7 +71,7 @@ hello_sql = stdenv.makeDerivation {
     sqlite3
   };
 
-  buildPhase = "x86_64-unknown-linux" and "gcc -o hello-sql hello_sql.c -l:libsqlite3.a" or "gcc -o hello-sql -lsqlite3 hello_sql.c";
+  buildPhase = "gcc -o hello-sql hello_sql.c -lsqlite3";
   installPhase = '\z
     mkdir -p "$out/bin"\n\z
     mv hello-sql "$out/bin/hello-sql"\n';
