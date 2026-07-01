@@ -205,11 +205,26 @@ As per the [Lua reference manual](https://www.lua.org/manual/5.4/manual.html#3.1
 Now that we know the basics, let's see how to pull in a C library from the internet.
 Add the following to the end of `zb.lua`:
 
+::::{tab-set}
+:::{tab-item} MacOS
 ```{literalinclude} tutorial/zb.lua
 :language: lua
 :start-at: sqlite3 =
 :end-before: -- Dependencies:
 ```
+:::
+:::{tab-item} Linux
+```{literalinclude} tutorial/zb_linux.lua
+:language: lua
+:start-at: sqlite3 =
+:end-before: -- Dependencies:
+```
+:::
+::::
+
+:::{note}
+If you are building on the `x86_64-unknown-linux` build system then you'll need to add
+:::
 
 Like before, we can build it with `zb build zb.lua#sqlite3`.
 Because the source archive includes a `configure` script and a Makefile,
@@ -227,10 +242,20 @@ Create another file, `hello_sql.c`, in the same directory as `zb.lua`:
 
 Then add to the end of `zb.lua`:
 
+::::{tab-set}
+:::{tab-item} MacOS
 ```{literalinclude} tutorial/zb.lua
 :language: lua
 :start-after: -- Dependencies:
 ```
+:::
+:::{tab-item} Linux
+```{literalinclude} tutorial/zb_linux.lua
+:language: lua
+:start-after: -- Dependencies:
+```
+:::
+::::
 
 This is mostly the same as our `hello` example from before,
 but we do a few new things:
