@@ -37,6 +37,13 @@ hello = stdenv.makeDerivation {
     mv hello "$out/bin/hello"\n';
 };
 
+
+-- Using Dependencies
+local configureFlags = ""
+if buildSystem == "x86_64-unknown-linux" then
+  configureFlags = "--enable-static --disable-shared"
+end
+
 sqlite3 = stdenv.makeDerivation {
   pname = "sqlite3";
   version = "3.50.1";
@@ -46,7 +53,7 @@ sqlite3 = stdenv.makeDerivation {
   };
 
   buildSystem = buildSystem;
-  configureFlags = buildSystem == "x86_64-unknown-linux" and "--enable-static --disable-shared" or ""
+  configureFlags = configureFlags;
 }
 
 -- Dependencies:
