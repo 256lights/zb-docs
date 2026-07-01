@@ -45,7 +45,8 @@ sqlite3 = stdenv.makeDerivation {
     hash = "sha256:00a65114d697cfaa8fe0630281d76fd1b77afcd95cd5e40ec6a02cbbadbfea71";
   };
 
-  buildSystem = "aarch64-apple-macos";
+  buildSystem = buildSystem;
+  configureFlags = buildSystem == "x86_64-unknown-linux" and "--enable-static --disable-shared" or ""
 }
 
 -- Dependencies:
@@ -61,7 +62,7 @@ hello_sql = stdenv.makeDerivation {
     end;
   };
 
-  buildSystem = "aarch64-apple-macos";
+  buildSystem = buildSystem;
 
   C_INCLUDE_PATH = strings.makeIncludePath {
     sqlite3
@@ -70,7 +71,7 @@ hello_sql = stdenv.makeDerivation {
     sqlite3
   };
 
-  buildPhase = "gcc -o hello-sql -lsqlite3 hello_sql.c";
+  buildPhase = "x86_64-unknown-linux" and "gcc -o hello-sql hello_sql.c -l:libsqlite3.a" or "gcc -o hello-sql -lsqlite3 hello_sql.c";
   installPhase = '\z
     mkdir -p "$out/bin"\n\z
     mv hello-sql "$out/bin/hello-sql"\n';
