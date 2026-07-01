@@ -20,7 +20,6 @@ author = 'The zb Authors'
 
 extensions = [
     'myst_parser',
-    'sphinx_design',
     'sphinx.ext.githubpages',
     'sphinx_reredirects',
     'zbluadomain',
