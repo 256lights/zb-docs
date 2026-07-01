@@ -211,10 +211,6 @@ Add the following to the end of `zb.lua`:
 :end-before: -- Dependencies:
 ```
 
-:::{note}
-If you are building on the `x86_64-unknown-linux` build system then you'll need to add
-:::
-
 Like before, we can build it with `zb build zb.lua#sqlite3`.
 Because the source archive includes a `configure` script and a Makefile,
 then `stdenv.makeDerivation` knows how to build the package.
