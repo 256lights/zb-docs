@@ -13,6 +13,7 @@
           ps.myst-parser
           ps.sphinx
           ps.sphinx-reredirects
+          ps.sphinx-design
         ]);
 
         woosh = pkgs.callPackage ./woosh.nix {};
