@@ -99,6 +99,23 @@ Equivalent to the `--cache` command-line flag.
 
 :::
 
+:::
+
+:::{confval} httpCache
+:type: string
+:default: >
+: `$XDG_CACHE_HOME/zb/http-cache.db` on Linux and macOS.
+: (`$XDG_CACHE_HOME` defaults to `$HOME/.cache`.)
+: `%LocalAppData%\zb\http-cache.db` on Windows.
+
+Absolute path to a SQLite database that stores cached HTTP responses.
+This database can be deleted at any time: it exists purely to speed up builds
+and reduce network bandwidth usage.
+
+Equivalent to the `--http-cache` command-line flag.
+
+:::
+
 :::{confval} allowEnvironment
 :type: boolean or array of string
 :default: `false`
