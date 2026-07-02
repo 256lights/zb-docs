@@ -177,7 +177,7 @@ Finally, we declare a `hello` variable with a derivation value:
 ```{literalinclude} tutorial/zb.lua
 :language: lua
 :start-after: -- Create our build target.
-:end-before: sqlite3 =
+:end-before: -- Using Dependencies
 ```
 
 `stdenv.makeDerivation` is a function that returns a derivation.
@@ -207,7 +207,7 @@ Add the following to the end of `zb.lua`:
 
 ```{literalinclude} tutorial/zb.lua
 :language: lua
-:start-at: sqlite3 =
+:start-after: -- Using Dependencies
 :end-before: -- Dependencies:
 ```
 
