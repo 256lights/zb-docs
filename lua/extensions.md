@@ -136,19 +136,21 @@ The environment that the builder runs in is documented in the [Derivation Specif
 
 [Derivation Specification]: ../derivations.md
 
-:::{function} fetchurl{url, hash, [name], [executable]}
+:::{function} fetchurl{hash, [name], [executable], [url], [urls]}
 
 `fetchurl` returns a derivation that downloads a URL.
 `fetchurl` takes a table as its sole argument
 with the following fields:
 
-:kwparam string url: The URL to download.
+:kwparam string url: The URL to download. Either `url` or `urls` must be specified. If both `url` and `urls` are defiend then `url` is tried first.
+
+:kwparam string[] urls: A list of URLs to download from. Each URL is tried in order until one succeeds. Either `url` or `urls` must be specified. If both `url` and `urls` are defiend then `url` is tried first.
 
 :kwparam string hash: A [hash string](hash-string.md) of the file's content.
 
 :kwparam string name:
   The name to use for the store object (excluding the digest).
-  If omitted, then the last path component of the `url` is used as the name.
+  If omitted, then the last path component of the `url` is used as the name otherwise the head of `urls` is used instead.
 
 :kwparam boolean executable:
   Whether the file should be marked as executable.
