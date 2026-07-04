@@ -36,6 +36,26 @@ The defined template parameters for URIs of this link relation type are:
 The linked resource **SHOULD** use the media type `text/x-nix-narinfo`.
 The linked resource **MUST** follow the [`.narinfo` file format](narinfo.md).
 
+## `https://zb-build.dev/api/rel/nar`
+
+The `https://zb-build.dev/api/rel/nar` link relation type
+defines where to `PUT` {term}`NAR` files when uploading to the binary cache.
+(For downloading, the URL in a store object's [`.narinfo` file](narinfo.md) is the canonical link.)
+Binary caches **MUST** provide this link if they support uploading.
+If provided, the discovery document **MUST NOT** use an array for this link relation type.
+The link **MUST** be a [URI template][RFC 6570].
+
+The defined template parameters for URIs of this link relation type are:
+
+(narinfo-uri-template-parameters)=
+`base`
+: The store object's base file name.
+
+`digest`
+: The digest portion of the base file name.
+
+The linked resource **SHOULD** use the media type `application/x-nix-nar`.
+
 ## `https://zb-build.dev/api/rel/narlisting`
 
 The `https://zb-build.dev/api/rel/narlisting` link relation type
