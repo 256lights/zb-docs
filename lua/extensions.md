@@ -127,7 +127,7 @@ The environment that the builder runs in is documented in the [Derivation Specif
   must produce the same hash as `outputHash`.
   If the value of the field is `recursive`,
   then the builder's output,
-  when serialized as a NAR file and hashed with the algorithm given by `outputHash`,
+  when serialized as a {term}`NAR` file and hashed with the algorithm given by `outputHash`,
   must produce the same hash as `outputHash`.
 
 :rtype: derivation
@@ -152,7 +152,7 @@ with the following fields:
 
 :kwparam boolean executable:
   Whether the file should be marked as executable.
-  If true, then the NAR serialization is used to compute the `hash` instead of the file content.
+  If true, then the {term}`NAR` serialization is used to compute the `hash` instead of the file content.
 
 :rtype: derivation
 

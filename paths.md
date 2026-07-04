@@ -76,7 +76,7 @@ The process for computing the path is as follows:
 
    - For a source store object,
      the hash digest **MUST** be the SHA-256 hash
-     of the NAR serialization of the store object.
+     of the {term}`NAR` serialization of the store object.
 
    - For a text store object,
      the hash digest **MUST** be a hash of the store object file's contents.
@@ -95,7 +95,7 @@ The process for computing the path is as follows:
      ```
 
      `r:` is added if the fixed-output hash is computed
-     from the NAR serialization of the store object.
+     from the {term}`NAR` serialization of the store object.
 
 2. Use the hash digest of the store object
    to produce a string with the following syntax:

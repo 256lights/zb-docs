@@ -7,7 +7,7 @@
 
 # NAR Listings
 
-NAR listing resources describe the structure of a NAR file.
+NAR listing resources describe the structure of a {term}`NAR` file.
 NAR listing resources **SHOULD** use the media type `application/json`.
 The document **MUST** be in [JSON format][JSON]
 and **MUST** conform to the [NAR listing schema](schema/nar-listing.json).

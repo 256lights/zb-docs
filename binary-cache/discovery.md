@@ -41,7 +41,7 @@ The linked resource **MUST** follow the [`.narinfo` file format](narinfo.md).
 The `https://zb-build.dev/api/rel/narlisting` link relation type
 provides [NAR listings](nar-listings.md) for store objects.
 Binary caches **MAY** provide this link in their discovery document
-to support efficient access of individual files in the NAR files.
+to support efficient access of individual files in the {term}`NAR` files.
 If provided, the discovery document **MUST** use an array of links for this link relation type.
 Each link **MUST** be a [URI template][RFC 6570].
 The URI template parameters are the same [as for `https://zb-build.dev/api/rel/narinfo`](project:#narinfo-uri-template-parameters).
