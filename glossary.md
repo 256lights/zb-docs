@@ -58,7 +58,16 @@ system triple
 
   The full syntax of a `system` value is defined in [`system` values specification][].
 
+Nix Archive
+NAR
+  The [Nix Archive (NAR) format][] is a binary format for serializing files, directories, and symbolic links.
+  The format has a single, canonical representation of file contents:
+  it excludes file times,
+  excludes permission bits other than executable on regular files,
+  and has a well-defined directory listing order.
+
 :::
 
 [LLVM target triples]: https://clang.llvm.org/docs/CrossCompilation.html#target-triple
+[Nix Archive (NAR) format]: https://nix.dev/manual/nix/latest/protocols/nix-archive/
 [`system` values specification]: https://github.com/256lights/zb/blob/main/internal/system/README.md
