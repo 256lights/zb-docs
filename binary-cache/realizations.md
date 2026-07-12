@@ -5,15 +5,13 @@
 # Realizations
 
 Realization resources **SHOULD** use the media type `application/json`.
-Realization documents **MUST** be in [JSON format][JSON]
+Realization documents **MUST** be in {rfc}`JSON format <8259>`
 and **MUST** conform to the [realization schema](schema/realization.json).
 
 Realization documents **SHOULD** contain one or more {term}`realizations <realization>`.
 A realization is a mapping from derivation output to a store path.
 Realization documents **SHOULD** have exactly one realization for each output of a derivation,
 but **MAY** have more than one realization for a derivation output.
-
-[JSON]: https://datatracker.ietf.org/doc/html/rfc8259
 
 ## Derivation Hashes
 
@@ -81,7 +79,7 @@ Clients **MUST** ignore signatures with formats they do not support.
 The `publicKey` field is Base-64-encoded 32 bytes of a public key.
 The `signature` field is Base-64-encoded 64 bytes of a signature.
 
-The signature is computed for a JSON object encoded using the [JSON Canonicalization Scheme][RFC 8785].
+The signature is computed for a JSON object encoded using the {rfc}`JSON Canonicalization Scheme <8785>`.
 The schema is defined by the `realizationForSignature` definition
 in the realization JSON schema.
 The reference classes in the object **MUST** be sorted by `path`,
@@ -91,7 +89,6 @@ then by `realization/outputName`.
 Reference classes with `"realization": null` are ordered before those with a non-`null` realization.
 
 [Ed25519 signature algorithm]: https://ed25519.cr.yp.to/
-[RFC 8785]: https://datatracker.ietf.org/doc/html/rfc8785
 
 ## JSON Schema
 

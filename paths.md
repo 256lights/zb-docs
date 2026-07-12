@@ -13,7 +13,7 @@ and the algorithm for computing store paths.
 (store-path-syntax)=
 ## Syntax
 
-The syntax of a store path in Augmented Backus-Naur Form (as described in [RFC 5234][])
+The syntax of a store path in Augmented Backus-Naur Form (as described in {rfc}`5234`)
 is as follows:
 
 ```abnf
@@ -46,8 +46,6 @@ The 32 Base-32 digits at the beginning of a `store-object-name`
 are referred to the {index}`store path's digest <store path; digest>`.
 The characters after the first hyphen in a `store-object-name`
 are referred to the {index}`store object's name <store object; name, store path; name>`.
-
-[RFC 5234]: https://datatracker.ietf.org/doc/html/rfc5234
 
 (path-algorithm)=
 ## Computing the Digest

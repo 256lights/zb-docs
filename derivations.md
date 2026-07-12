@@ -12,12 +12,9 @@ which produces a `.drv` file under the hood.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in [RFC 2119][].
-Syntax is defined in Augmented Backus-Naur Form as described in [RFC 5234][] and [RFC 7405][].
+document are to be interpreted as described in {rfc}`2119`.
+Syntax is defined in Augmented Backus-Naur Form as described in {rfc}`5234` and {rfc}`7405`.
 
-[RFC 2119]: https://datatracker.ietf.org/doc/html/rfc2119
-[RFC 5234]: https://datatracker.ietf.org/doc/html/rfc5234
-[RFC 7405]: https://datatracker.ietf.org/doc/html/rfc7405
 [Nix's derivation file format]: https://nix.dev/manual/nix/2.24/protocols/derivation-aterm
 
 ```{eval-rst}
