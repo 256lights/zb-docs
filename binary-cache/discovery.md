@@ -43,7 +43,7 @@ defines where to `PUT` {term}`NAR` files when uploading to the binary cache.
 (For downloading, the URL in a store object's [`.narinfo` file](narinfo.md) is the canonical link.)
 Binary caches **MUST** provide this link if they support uploading.
 If provided, the discovery document **MUST NOT** use an array for this link relation type.
-The link **MUST** be a [URI template][RFC 6570].
+The link **MUST** be a {rfc}`URI template <6570>`.
 
 The defined template parameters for URIs of this link relation type are:
 
