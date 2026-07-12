@@ -16,7 +16,7 @@ Examples include:
 :heading-level: 2
 :::
 
-The syntax of a hash string in Augmented Backus-Naur Form (as described in [RFC 5234][] and [RFC 7405][])
+The syntax of a hash string in Augmented Backus-Naur Form (as described in {rfc}`5234` and {rfc}`7405`)
 is as follows:
 
 ```abnf
@@ -38,6 +38,4 @@ base64-digit = ALPHA / DIGIT / "+" / "/"
 
 The `sri` rule is a strict subset of a [Subresource Integrity hash expression][].
 
-[RFC 5234]: https://datatracker.ietf.org/doc/html/rfc5234
-[RFC 7405]: https://datatracker.ietf.org/doc/html/rfc7405
 [Subresource Integrity hash expression]: https://www.w3.org/TR/SRI/#the-integrity-attribute

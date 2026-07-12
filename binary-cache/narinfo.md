@@ -8,7 +8,7 @@
 
 Resources with the media type `text/x-nix-narinfo`
 **MUST** conform to the syntax below.
-(Syntax is defined in Augmented Backus-Naur Form as described in [RFC 5234][] and [RFC 7405][].)
+(Syntax is defined in Augmented Backus-Naur Form as described in {rfc}`5234` and {rfc}`7405`.)
 
 ```abnf
 narinfo = *(key ": " value LF)
@@ -47,6 +47,3 @@ base32-digit = DIGIT / %x61-64 / %x66-6E / %x70-73 / %x76-7A
 ```
 
 See the [store path syntax](project:#store-path-syntax) for the `path` rule.
-
-[RFC 5234]: https://datatracker.ietf.org/doc/html/rfc5234
-[RFC 7405]: https://datatracker.ietf.org/doc/html/rfc7405
