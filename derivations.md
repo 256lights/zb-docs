@@ -129,7 +129,7 @@ to provide the `out` environment variable, for example.)
 zb **SHALL** treat each placeholder string present in these fields
 as if it was replaced with the absolute path to the corresponding store object.
 
-Placeholders are a [Nix-Base-32-encoded][] hash preceded by a slash (`/`).
+Placeholders are a {term}`Nix-Base-32-encoded <Nix Base-32>` hash preceded by a slash (`/`).
 Output placeholders use the SHA-256 hash of `nix-output:` followed by the output name.
 For example, the placeholder for the output named `out`
 is `/1rz4g4znpzjwh1xymhjpm42vipw92pr73vdgl6xs1hycac8kf2n9`.
@@ -140,8 +140,6 @@ followed by a colon (`:`),
 followed by the input derivation's name with the trailing `.drv` removed,
 and if the output name is not `out`,
 then followed by a hyphen (`-`) and followed by the output name.
-
-[Nix-Base-32-encoded]: https://edolstra.github.io/pubs/phd-thesis.pdf#page=97
 
 ```{eval-rst}
 .. index:: builder program; environment variables
