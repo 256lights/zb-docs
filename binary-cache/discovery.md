@@ -47,7 +47,6 @@ The link **MUST** be a {rfc}`URI template <6570>`.
 
 The defined template parameters for URIs of this link relation type are:
 
-(narinfo-uri-template-parameters)=
 `base`
 : The store object's base file name.
 
