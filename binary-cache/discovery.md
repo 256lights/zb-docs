@@ -77,7 +77,14 @@ The defined template parameters for URIs of this link relation type are:
 : One of `md5`, `sha1`, `sha256`, or `sha512` depending on the hash.
 
 `hashDigest`
+: The hash bits encoded with {term}`Nix Base-32`.
+
+`hashDigestHex`
 : The hash bits encoded as lowercase hexadecimal.
+
+`hashDigestBase64`
+: The hash bits encoded as base64url with padding
+as described by {rfc}`4648#section-5`.
 
 The linked resource **SHOULD** use the media type `application/json`.
 The resource **MUST** follow the [realization format](realizations.md).
