@@ -66,6 +66,13 @@ NAR
   excludes permission bits other than executable on regular files,
   and has a well-defined directory listing order.
 
+Nix Base-32
+  Nix uses a base-32 binary-to-text encoding for [hashes](lua/hash-string.md) and [store paths](paths.md).
+  This encoding uses a custom alphabet and is not compliant with {rfc}`4648`.
+  The exact algorithm is specified in
+  [*The Purely Functional Software Deployment Model* Page 97](https://edolstra.github.io/pubs/phd-thesis.pdf#page=97).
+  For compatibility, zb also uses this encoding.
+
 :::
 
 [LLVM target triples]: https://clang.llvm.org/docs/CrossCompilation.html#target-triple

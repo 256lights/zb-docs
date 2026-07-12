@@ -129,5 +129,5 @@ The process for computing the path is as follows:
    are the 13th through 20th bytes of the SHA-256 digest.
 
 5. The 20-byte string from the previous step
-   is [Nix Base-32-encoded](https://edolstra.github.io/pubs/phd-thesis.pdf#page=97)
+   is {term}`Nix-Base-32-encoded <Nix Base-32>`
    to produce the store path digest.
