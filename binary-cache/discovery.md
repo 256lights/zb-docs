@@ -31,7 +31,7 @@ The defined template parameters for URIs of this link relation type are:
 : The store object's base file name.
 
 `digest`
-: The digest portion of the base file name.
+: The digest portion of the store object's base file name.
 
 The linked resource **SHOULD** use the media type `text/x-nix-narinfo`.
 The linked resource **MUST** follow the [`.narinfo` file format](narinfo.md).
@@ -52,7 +52,7 @@ The defined template parameters for URIs of this link relation type are:
 : The store object's base file name.
 
 `digest`
-: The digest portion of the base file name.
+: The digest portion of the store object's base file name.
 
 The linked resource **SHOULD** use the media type `application/x-nix-nar`.
 
