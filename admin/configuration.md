@@ -27,3 +27,14 @@ when the server receives a request to realize a {term}`derivation` output it doe
 before attempting to run its {term}`builder program`.
 
 :::
+
+:::{confval} server.upload
+:type: object
+:default: `null`
+
+The `server.upload` setting is a [store locator](project:#store-locator)
+that specifies a store that the server will upload
+{term}`store objects <store object>` and {term}`realizations <realization>` to
+after the server successfully runs a {term}`builder program`.
+
+:::
