@@ -24,6 +24,37 @@ This is a strict superset of JSON that permits:
 
 ## Location
 
+zb will read configuration from the following locations
+(in decreasing order of precedence):
+
+1. Files specified by the {option}`--config option <zb --config>`.
+2. Files specified by the {envvar}`ZB_CONFIG_FILE` environment variable.
+3. Files in operating-system-specific locations (documented below).
+
+### Per-Invocation
+
+Individual invocations of the zb CLI can override configuration
+with command-line flags or environment variables:
+
+```{program} zb
+```
+
+:::{option} --config <file>
+
+The `--config` option specifies configuration file that zb will read
+The option may be passed multiple times in increasing order of precedence.
+
+:::
+
+:::{envvar} ZB_CONFIG_FILE
+
+The `ZB_CONFIG_FILE` environment variable can be set to a list of configuration files
+that zb will read in decreasing order of precedence.
+On Linux and macOS, the files are separated by colons (`:`).
+On Windows, the files are separated by semicolons (`;`).
+
+:::
+
 ### Linux and macOS
 
 On Linux and macOS systems, zb follows the [XDG Base Directory Specification][]
