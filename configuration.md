@@ -41,7 +41,7 @@ with command-line flags or environment variables:
 
 :::{option} --config <file>
 
-The `--config` option specifies configuration file that zb will read
+The `--config` option specifies a configuration file that zb will read.
 The option may be passed multiple times in increasing order of precedence.
 
 :::
