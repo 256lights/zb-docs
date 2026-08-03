@@ -38,3 +38,25 @@ that specifies a store that the server will upload
 after the server successfully runs a {term}`builder program`.
 
 :::
+
+:::{confval} server.signingKeyFiles
+:type: array of strings
+:default: `[]`
+
+The `server.signingKeyFiles` setting is an array of paths
+to JSON files that contain private signing keys.
+`server.signingKeyFiles` settings are merged across all configuration files.
+`zb serve` will sign each {term}`realization` with every key
+after it successfully runs a {term}`builder program`
+and before it uploads to the store in {confval}`server.upload`.
+
+Each signing key file holds a JSON object with the following properties:
+
+| Name     | Type   | Description                               |
+| :------- | :----- | :---------------------------------------- |
+| `format` | string | Only `"ed25519"` is defined at the moment |
+| `key`    | string | Base64-encoded private key data           |
+
+Signing keys can be generated with the `zb key generate` command.
+
+:::
