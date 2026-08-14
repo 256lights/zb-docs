@@ -138,6 +138,9 @@ The environment that the builder runs in is documented in the [Derivation Specif
 
 :::{function} outputs(x, system)
 
+```{version-added} 0.2
+```
+
 Read an object's `__outputs` [metatable](https://www.lua.org/manual/5.4/manual.html#2.4) field
 using the same logic that `zb build` uses to determine [what to build](project:#output-values).
 
@@ -154,9 +157,6 @@ then `outputs` returns its first argument.
   A {term}`system triple` to get outputs for.
 
 :rtype: any
-
-```{version-added} 0.2
-```
 
 :::
 
