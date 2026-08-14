@@ -28,8 +28,7 @@ zb build 'https://www.example.com/archive.zip#foo.lua:myvar'
 
 ## URL Syntax
 
-URL arguments to `zb build` comply with {rfc}`3986`
-and can use any of the following {rfc}`schemes <3986#section-3.1>`:
+URL arguments to `zb build` can use any of the following {rfc}`schemes <3986#section-3.1>`:
 
 - `file` (default if absent)
 - `http`
