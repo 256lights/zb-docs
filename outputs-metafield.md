@@ -1,4 +1,6 @@
-The value of the `__outputs` [metatable](https://www.lua.org/manual/5.4/manual.html#2.4) field can be:
+If a value has a `__outputs` field in its [metatable](https://www.lua.org/manual/5.4/manual.html#2.4),
+then it will override zb's built-in behavior.
+The value of the `__outputs` metatable field can be:
 
 - A function.
   The function will be called with the original table

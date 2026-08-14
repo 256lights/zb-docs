@@ -22,43 +22,6 @@ zb build https://www.example.com/foo.lua
 zb build 'https://www.example.com/archive.zip#foo.lua:myvar'
 ```
 
-(output-values)=
-## What Can Be Built
-
-Most commonly, the objects that you will pass to `zb build`
-will be objects returned by {lua:func}`derivation`.
-A {term}`derivation` specifies a {term}`builder program` to run
-and its dependencies, and `zb build` will arrange to run those.
-
-`zb build` also accepts a few other types of objects:
-
-- **Strings.** Because these carry [dependency information](lua/deps.md),
-  `zb build` will build any derivation outputs referenced in the string
-  before printing the full string to standard output.
-- **Tables** or anything with the `__pairs` [metamethod][Metatables and Metamethods].
-  Pair keys that are not strings or numbers are ignored.
-  Pair values are converted via [`tostring`][] and are handled as above.
-- Anything with the `__tostring` [metamethod][Metatables and Metamethods].
-  The metamethod is called and the resulting string is handled as above.
-  If a value has both a `__pairs` metamethod and a `__tostring` metamethod,
-  then the `__tostring` metamethod is ignored.
-
-```{eval-rst}
-.. index:: __outputs metatable field
-```
-
-zb will use a zb-specific `__outputs` [metatable][Metatables and Metamethods] field if present.
-{lua:func}`outputs` can be used to obtain the value from an `__outputs` metatable field in user-defined code.
-
-```{include} outputs-metafield.md
-```
-
-(Objects returned by {lua:func}`derivation` have an `__outputs` field in their metatable,
-so are not different from user-defined types.)
-
-[`tostring`]: https://www.lua.org/manual/5.4/manual.html#pdf-tostring
-[Metatables and Metamethods]: https://www.lua.org/manual/5.4/manual.html#2.4
-
 ```{eval-rst}
 .. index:: URL
 ```
@@ -93,3 +56,37 @@ Otherwise, the key path is a slash-separated sequence of [table indexes][Variabl
 (e.g. a key path of `foo/bar/baz` is equivalent to `foo.bar.baz` in Lua).
 
 [Variables]: https://www.lua.org/manual/5.4/manual.html#3.2
+
+(output-eval)=
+## What Can Be Built
+
+Once `zb build` has evaluated the Lua value from an expression or a URL,
+`zb build` converts the value to a string using [`tostring`][],
+unless the value is a table.
+Because strings carry [dependency information](lua/deps.md),
+`zb build` will build any {term}`derivation` outputs referenced in the string
+before printing the full string to standard output.
+If the Lua value is a table, the table will be walked using [`pairs`][].
+Pairs with keys that are not strings or numbers will be ignored.
+Each value will be converted to a string using [`tostring`][].
+
+```{eval-rst}
+.. index:: __outputs metatable field
+```
+
+```{include} outputs-metafield.md
+```
+
+:::{seealso}
+
+{lua:func}`outputs`
+: Built-in function to obtain a value's outputs in user-defined code.
+
+{lua:func}`derivation`
+: Built-in function to create strings that cause zb to run a {term}`builder program`.
+
+:::
+
+[`pairs`]: https://www.lua.org/manual/5.4/manual.html#pdf-pairs
+[`tostring`]: https://www.lua.org/manual/5.4/manual.html#pdf-tostring
+[Metatables and Metamethods]: https://www.lua.org/manual/5.4/manual.html#2.4

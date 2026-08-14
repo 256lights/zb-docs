@@ -136,29 +136,31 @@ The environment that the builder runs in is documented in the [Derivation Specif
 
 [Derivation Specification]: ../derivations.md
 
-:::{function} outputs(x, system)
+::::{function} outputs(x, system)
 
 ```{version-added} 0.2
 ```
 
-Read an object's `__outputs` [metatable](https://www.lua.org/manual/5.4/manual.html#2.4) field
-using the same logic that `zb build` uses to determine [what to build](project:#output-values).
+Get a value's outputs
+using the same logic that `zb build` uses to determine [what to build](project:#output-eval).
 
 ```{include} ../outputs-metafield.md
 ```
 
-If the object does not have an `__outputs` metatable field,
-then `outputs` returns its first argument.
-
 :param x:
-  The object to get outputs for.
+  The value to get outputs for.
 
 :param string system:
   A {term}`system triple` to get outputs for.
 
-:rtype: any
+:returns:
+  A table of output strings.
+  The keys will be strings that correspond to zb's name for each output.
+  The "default" output has an empty string key.
 
-:::
+:rtype: table
+
+::::
 
 :::{function} fetchurl{url, hash, [name], [executable]}
 
