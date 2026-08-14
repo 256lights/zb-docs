@@ -155,6 +155,9 @@ then `outputs` returns its first argument.
 
 :rtype: any
 
+```{version-added} 0.2
+```
+
 :::
 
 :::{function} fetchurl{url, hash, [name], [executable]}
