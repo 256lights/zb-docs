@@ -2,22 +2,32 @@
 
 The arguments to `zb build` are either a list of paths/URLs,
 or, if the `--expression` flag is passed, a [Lua](lua/index.md) expression.
-Here are some examples of what's possible:
+Here are some examples:
 
 ```shell
-# Build what is returned from foo.lua.
-zb build foo.lua
+# Build what is returned from the Lua file at foo/bar.lua.
+zb build foo/bar.lua
+zb build --expression 'await(import("foo/bar.lua"))'
+
 # Build what is stored in the global variable "myvar"
-# in the file foo.lua.
-zb build 'foo.lua#myvar'
-# Build what is stored in the global variable "myvar"
-# in the file foo.lua.
-zb build --expression 'import("foo.lua").myvar'
-# Fetch the file, evaluate it as Lua,
-# and then build what it returns.
-zb build https://www.example.com/foo.lua
-# Fetch the zip file, unpack it,
-# evaluate the file inside it called "foo.lua",
+# in the Lua file at foo/bar.lua.
+zb build 'foo/bar.lua#myvar'
+zb build --expression 'import("foo/bar.lua").myvar'
+
+# Build what is stored in the field "field"
+# in the global table "myvar"
+# in the Lua file at foo/bar.lua.
+zb build 'foo/bar.lua#myvar/field'
+zb build --expression 'import("foo/bar.lua").myvar.field'
+
+# Download the file at https://www.example.com/foo.lua,
+# evaluate it as Lua,
+# and then build what is stored in the global variable "myvar".
+zb build 'https://www.example.com/foo.lua#myvar'
+
+# Download the zip file at https://www.example.com/archive.zip,
+# unpack it,
+# evaluate the Lua file inside it called "foo.lua",
 # then build what is stored in the global variable "myvar".
 zb build 'https://www.example.com/archive.zip#foo.lua:myvar'
 ```
