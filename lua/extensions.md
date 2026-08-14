@@ -55,7 +55,7 @@ you can pass the string as the sole argument to `path`.
 
 :::{function} readFile(p)
 
-```{versionadded} 0.2
+```{version-added} 0.2
 ```
 
 `readFile` reads the contents of a file into a string.
@@ -264,6 +264,9 @@ Creates a non-executable file in the store.
 :::
 
 :::{function} lazy(f, [t])
+
+```{version-added} 0.2
+```
 
 Returns a "lazy" table: one whose values are computed as its keys are accessed.
 A lazy table's keys can only be booleans, numbers, or strings.
