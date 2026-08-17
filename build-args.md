@@ -77,7 +77,12 @@ Because strings carry [dependency information](lua/deps.md),
 before printing the full string to standard output.
 If the Lua value is a table, the table will be walked using [`pairs`][].
 Pairs with keys that are not strings or numbers will be ignored.
-Each value will be converted to a string using [`tostring`][].
+The last pair with the same string key is the one that will be used.
+Each value in the table is converted to its *default output* string.
+The default output of any non-table value
+is the result of calling [`tostring`][] with the value as its argument.
+The default output of a table is the value of the key `""`, `1`, `"1"`, or `"out"`,
+in descending order of preference, recursing on any table value.
 
 ```{eval-rst}
 .. index:: __outputs metatable field
@@ -90,6 +95,9 @@ Each value will be converted to a string using [`tostring`][].
 
 {lua:func}`outputs`
 : Built-in function to obtain a value's outputs in user-defined code.
+
+{lua:func}`defaultOutput`
+: Built-in function to obtain a value's default output in user-defined code.
 
 {lua:func}`derivation`
 : Built-in function to create strings that cause zb to run a {term}`builder program`.
