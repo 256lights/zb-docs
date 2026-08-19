@@ -103,10 +103,10 @@ The environment that the builder runs in is documented in the [Derivation Specif
   and the resulting store object (excluding the digest and the `.drv` extension).
 
 :kwparam string system:
-  The triple that the derivation can run on.
+  The {term}`system triple` that the derivation can run on.
 
 :kwparam string builder:
-  The path to the program to run.
+  The path to the {term}`program <builder program>` to run.
 
 :kwparam string[] args:
   The arguments to pass to the {term}`builder program`.
