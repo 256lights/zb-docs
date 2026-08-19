@@ -76,6 +76,7 @@ zb simplifies reproducible builds.
 
 Installation <install>
 getting-started
+build-args
 admin/index
 comparison
 ```

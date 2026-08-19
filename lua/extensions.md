@@ -136,6 +136,56 @@ The environment that the builder runs in is documented in the [Derivation Specif
 
 [Derivation Specification]: ../derivations.md
 
+::::{function} outputs(x, system)
+
+```{version-added} 0.2
+```
+
+Get a value's outputs
+using the same logic that `zb build` uses to determine [what to build](project:#output-eval).
+
+```{include} ../outputs-metafield.md
+```
+
+:param x:
+  The value to get outputs for.
+
+:param string system:
+  A {term}`system triple` to get outputs for.
+
+:returns:
+  A table of output strings.
+  The keys will be strings that correspond to zb's name for each output.
+  The default output is normalized to the empty string key.
+
+:rtype: table
+
+::::
+
+::::{function} defaultOutput(x, system)
+
+```{version-added} 0.2
+```
+
+Get a value's default output
+using the same logic that `zb build` uses to determine [what to build](project:#output-eval).
+
+```{include} ../outputs-metafield.md
+```
+
+:param x:
+  The value to get the default output for.
+
+:param string system:
+  A {term}`system triple` to get the default output for.
+
+:returns:
+  The default output converted to a string.
+
+:rtype: string
+
+::::
+
 :::{function} fetchurl{url, hash, [name], [executable]}
 
 `fetchurl` returns a derivation that downloads a URL.
