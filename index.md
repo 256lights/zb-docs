@@ -97,3 +97,12 @@ genindex
 support
 Contributing <CONTRIBUTING>
 ```
+
+```{toctree}
+:caption: Legal
+:maxdepth: 1
+:hidden:
+
+tos
+privacy
+```
